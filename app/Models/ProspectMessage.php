@@ -16,11 +16,16 @@ class ProspectMessage extends Model
         'status',
         'sent_at',
         'delivery_metadata',
+        'ai_inbox_reviewed_at',
+        'ai_inbox_suggest_send',
+        'ai_inbox_review_notes',
     ];
 
     protected $casts = [
         'delivery_metadata' => 'array',
         'sent_at' => 'datetime',
+        'ai_inbox_reviewed_at' => 'datetime',
+        'ai_inbox_suggest_send' => 'boolean',
     ];
 
     const STATUS_DRAFT = 'draft';

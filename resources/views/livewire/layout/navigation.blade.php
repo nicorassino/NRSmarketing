@@ -33,6 +33,15 @@ new class extends Component
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.*')">
+                        Productos
+                    </x-nav-link>
+                    <x-nav-link :href="route('campaigns.index')" :active="request()->routeIs('campaigns.*') || request()->routeIs('runs.*')">
+                        Campanas
+                    </x-nav-link>
+                    <x-nav-link :href="route('whatsapp.bridge.show')" :active="request()->routeIs('whatsapp.bridge.*')">
+                        WhatsApp
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -83,6 +92,15 @@ new class extends Component
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('products.index')" :active="request()->routeIs('products.*')">
+                Productos
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('campaigns.index')" :active="request()->routeIs('campaigns.*') || request()->routeIs('runs.*')">
+                Campanas
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('whatsapp.bridge.show')" :active="request()->routeIs('whatsapp.bridge.*')">
+                WhatsApp
             </x-responsive-nav-link>
         </div>
 

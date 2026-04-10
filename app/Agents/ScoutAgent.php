@@ -36,11 +36,28 @@ class ScoutAgent extends BaseAgent
     protected function process(CampaignRun $run, array $context): AgentResult
     {
         $mission = $context['02_scout_mission'] ?? null;
+        $campaign = $run->campaign;
+        $overrides = (array) ($run->metadata['scout_overrides'] ?? []);
 
         if (empty($mission)) {
             return AgentResult::failure(
                 'No se encontró la misión de búsqueda.',
                 'MISSION_NOT_FOUND'
+            );
+        }
+
+        $location = trim((string) ($overrides['location'] ?? '')) ?: ($campaign->target_location ?? '');
+        if (empty($location)) {
+            return AgentResult::failure(
+                'No se puede ejecutar Scout sin target_location definido en la campaña.',
+                'TARGET_LOCATION_REQUIRED'
+            );
+        }
+
+        if (empty($campaign->target_niche) && empty($campaign->objective)) {
+            return AgentResult::failure(
+                'No se puede ejecutar Scout sin target_niche u objective definido.',
+                'TARGETING_REQUIRED'
             );
         }
 
@@ -64,11 +81,19 @@ class ScoutAgent extends BaseAgent
         $queries = $this->parseSearchQueries($queriesResponse['content']);
 
         // Step 2: Execute searches via SerpAPI
-        $campaign = $run->campaign;
-        $location = $campaign->target_location ?? 'Argentina';
+        $hl = strtolower((string) ($overrides['hl'] ?? 'es'));
+        $gl = strtolower((string) ($overrides['gl'] ?? 'ar'));
+        $num = (int) ($overrides['num'] ?? config('agents.scout.max_results_per_search', 20));
+        $num = max(1, min($num, 100));
         $allResults = [];
+        $searchRequests = [];
+        $mapsEnabled = (bool) config('agents.scout.maps_enabled', true);
+        $mapsSearches = (int) config('agents.scout.maps_searches', 3);
+        $mapsSearches = max(0, min($mapsSearches, 10));
 
-        $maxSearches = min(count($queries), config('agents.scout.max_searches', 10));
+        $maxSearchesCfg = (int) ($overrides['max_searches'] ?? config('agents.scout.max_searches', 10));
+        $maxSearchesCfg = max(1, min($maxSearchesCfg, 25));
+        $maxSearches = min(count($queries), $maxSearchesCfg);
 
         for ($i = 0; $i < $maxSearches; $i++) {
             if ($this->budgetService->isExceeded()) {
@@ -77,11 +102,40 @@ class ScoutAgent extends BaseAgent
 
             $searchResults = $this->serpApi->search($queries[$i], [
                 'location' => $location,
-                'num' => config('agents.scout.max_results_per_search', 20),
+                'hl' => $hl,
+                'gl' => $gl,
+                'num' => $num,
             ]);
+
+            $searchRequests[] = [
+                'query' => $queries[$i],
+                'params' => [
+                    'engine' => 'google',
+                    'location' => $location,
+                    'hl' => $hl,
+                    'gl' => $gl,
+                    'num' => $num,
+                ],
+            ];
 
             if (!empty($searchResults)) {
                 $allResults = array_merge($allResults, $searchResults);
+            }
+
+            if ($mapsEnabled && $i < $mapsSearches) {
+                $mapsResults = $this->serpApi->searchMaps($queries[$i], $location);
+                if (!empty($mapsResults)) {
+                    $allResults = array_merge($allResults, $mapsResults);
+                }
+
+                $searchRequests[] = [
+                    'query' => $queries[$i],
+                    'params' => [
+                        'engine' => 'google_maps',
+                        'location' => $location,
+                        'hl' => $hl,
+                    ],
+                ];
             }
 
             $this->budgetService->logUsage(
@@ -93,11 +147,14 @@ class ScoutAgent extends BaseAgent
             );
         }
 
-        // Step 3: Deduplicate results
-        $allResults = $this->deduplicateResults($allResults);
+        $totalRawBeforeDedup = count($allResults);
+
+        // Step 3: Deduplicate + merge results preserving contacts
+        $allResults = $this->deduplicateAndMergeResults($allResults);
+        $mergedResults = $allResults;
 
         // Step 4: Use Gemini Flash to analyze and score prospects
-        $scoredResults = $this->scoreProspects($allResults, $analysis, $mission);
+        $scoredResults = $this->scoreProspects($mergedResults, $analysis, $mission);
 
         // Step 5: Save prospects to database
         $savedCount = 0;
@@ -125,9 +182,12 @@ class ScoutAgent extends BaseAgent
             '03_search_results',
             [
                 'queries_used' => array_slice($queries, 0, $maxSearches),
-                'total_raw_results' => count($allResults),
+                'search_requests' => $searchRequests,
+                'total_raw_results' => $totalRawBeforeDedup,
+                'total_after_merge' => count($mergedResults),
                 'total_scored' => count($scoredResults),
                 'total_saved' => $savedCount,
+                'merged_results' => $mergedResults,
                 'results' => $scoredResults,
             ]
         );
@@ -178,22 +238,106 @@ PROMPT;
         }, $lines));
     }
 
-    private function deduplicateResults(array $results): array
+    private function deduplicateAndMergeResults(array $results): array
     {
-        $seen = [];
-        $unique = [];
+        $mergedByDomain = [];
 
         foreach ($results as $result) {
-            $key = $result['url'] ?? $result['link'] ?? $result['title'] ?? '';
-            $domain = parse_url($key, PHP_URL_HOST) ?? $key;
+            $domain = $this->resolveDomain($result);
+            if (!isset($mergedByDomain[$domain])) {
+                $mergedByDomain[$domain] = $result;
+                $mergedByDomain[$domain]['source_list'] = [$result['source'] ?? 'unknown'];
+                $mergedByDomain[$domain]['contact_richness'] = $this->contactRichness($mergedByDomain[$domain]);
+                continue;
+            }
 
-            if (!isset($seen[$domain])) {
-                $seen[$domain] = true;
-                $unique[] = $result;
+            $base = $mergedByDomain[$domain];
+            $candidate = $result;
+            $sourceList = $base['source_list'] ?? [];
+            $sourceList[] = $candidate['source'] ?? 'unknown';
+
+            // Prefer map-based contact data when available.
+            foreach (['phone', 'email', 'instagram', 'address', 'contact_name'] as $field) {
+                if (empty($base[$field]) && !empty($candidate[$field])) {
+                    $base[$field] = $candidate[$field];
+                }
+            }
+
+            if (empty($base['url']) && !empty($candidate['url'])) {
+                $base['url'] = $candidate['url'];
+            }
+
+            if (empty($base['snippet']) && !empty($candidate['snippet'])) {
+                $base['snippet'] = $candidate['snippet'];
+            }
+
+            // Keep highest apparent relevance if available.
+            $baseScore = (int) ($base['score'] ?? 0);
+            $candidateScore = (int) ($candidate['score'] ?? 0);
+            if ($candidateScore > $baseScore) {
+                $base['score'] = $candidateScore;
+                if (!empty($candidate['analysis'])) {
+                    $base['analysis'] = $candidate['analysis'];
+                }
+            }
+
+            $base['source_list'] = array_values(array_unique($sourceList));
+            $base['contact_richness'] = $this->contactRichness($base);
+            $mergedByDomain[$domain] = $base;
+        }
+
+        $merged = array_values($mergedByDomain);
+
+        // Sort by "contact richness" first, then by explicit score.
+        usort($merged, function (array $a, array $b): int {
+            $contactA = (int) ($a['contact_richness'] ?? $this->contactRichness($a));
+            $contactB = (int) ($b['contact_richness'] ?? $this->contactRichness($b));
+            if ($contactA !== $contactB) {
+                return $contactB <=> $contactA;
+            }
+
+            return ((int) ($b['score'] ?? 0)) <=> ((int) ($a['score'] ?? 0));
+        });
+
+        foreach ($merged as &$item) {
+            $item['contact_richness'] = (int) ($item['contact_richness'] ?? $this->contactRichness($item));
+        }
+        unset($item);
+
+        return $merged;
+    }
+
+    private function resolveDomain(array $result): string
+    {
+        $url = $result['url'] ?? $result['link'] ?? '';
+        if (!empty($url)) {
+            $host = parse_url($url, PHP_URL_HOST);
+            if (!empty($host)) {
+                return strtolower((string) $host);
             }
         }
 
-        return $unique;
+        $title = trim((string) ($result['company_name'] ?? $result['title'] ?? 'sin-dominio'));
+        return 'name:' . strtolower($title);
+    }
+
+    private function contactRichness(array $result): int
+    {
+        $score = 0;
+        if (!empty($result['phone'])) {
+            $score += 3;
+        }
+        if (!empty($result['email'])) {
+            $score += 3;
+        }
+        if (!empty($result['instagram'])) {
+            $score += 2;
+        }
+        if (!empty($result['address'])) {
+            $score += 1;
+        }
+
+        return $score;
     }
 
     private function scoreProspects(array $results, string $analysis, string $mission): array
@@ -239,7 +383,12 @@ PROMPT;
 
         if (!$response['success']) {
             // Return results without scoring if AI fails
-            return array_map(fn($r) => array_merge($r, ['score' => 50, 'analysis' => 'Sin análisis']), $results);
+            return array_map(function ($r) {
+                $r['score'] = $r['score'] ?? 50;
+                $r['analysis'] = $r['analysis'] ?? 'Sin análisis';
+                $r['contact_richness'] = (int) ($r['contact_richness'] ?? $this->contactRichness($r));
+                return $r;
+            }, $results);
         }
 
         $scored = json_decode($response['content'], true);
@@ -251,6 +400,41 @@ PROMPT;
             }
         }
 
-        return is_array($scored) ? $scored : $results;
+        if (!is_array($scored)) {
+            return $results;
+        }
+
+        // Merge Gemini scoring output back with original contacts to avoid losing data.
+        $index = [];
+        foreach ($results as $original) {
+            $key = $this->resolveDomain($original);
+            $index[$key] = $original;
+        }
+
+        $final = [];
+        foreach ($scored as $item) {
+            if (!is_array($item)) {
+                continue;
+            }
+
+            $key = $this->resolveDomain($item);
+            $original = $index[$key] ?? [];
+            $merged = array_merge($original, $item);
+
+            foreach (['phone', 'email', 'instagram', 'address', 'contact_name', 'url', 'source_list'] as $field) {
+                if (empty($merged[$field]) && !empty($original[$field])) {
+                    $merged[$field] = $original[$field];
+                }
+            }
+            $merged['contact_richness'] = (int) ($original['contact_richness'] ?? $this->contactRichness($merged));
+
+            $final[] = $merged;
+        }
+
+        if (empty($final)) {
+            return $results;
+        }
+
+        return $final;
     }
 }

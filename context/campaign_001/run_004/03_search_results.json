@@ -1,0 +1,122 @@
+{
+    "queries_used": [
+        "\"escuela de fútbol\" \"sedes\" \"enviar el comprobante\" Argentina",
+        "\"academia de danza\" \"nuestros profesores\" \"inscripción\" CABA OR Rosario",
+        "\""
+    ],
+    "total_raw_results": 11,
+    "total_scored": 11,
+    "total_saved": 11,
+    "results": [
+        {
+            "title": "¡ARRANCA LA ESCUELA DE FÚTBOL! 🔥⚽ 📅 ...",
+            "company_name": "Escuela de Fútbol (Instagram)",
+            "url": "https:\/\/www.instagram.com\/p\/DVMcpKDicqc\/",
+            "score": 85,
+            "analysis": "Institución con múltiples sedes y proceso de inscripción abierto; alta probabilidad de gestión manual de horarios y cupos.",
+            "contact_name": null,
+            "email": null,
+            "phone": null
+        },
+        {
+            "title": "Los esperamos incripciones abiertas niñas y niños de ...",
+            "company_name": "Escuela de Fútbol Generación de Oro",
+            "url": "https:\/\/www.facebook.com\/groups\/389285795185304\/posts\/2089741761806357\/",
+            "score": 95,
+            "analysis": "Prospecto caliente: solicita explícitamente 'enviar el comprobante de pago', señal clara de falta de automatización financiera.",
+            "contact_name": null,
+            "email": null,
+            "phone": null
+        },
+        {
+            "title": "Pagá tu cuota con Pago Mis Cuentas - San Lorenzo",
+            "company_name": "Club Atlético San Lorenzo de Almagro",
+            "url": "https:\/\/sanlorenzo.com.ar\/club\/noticias\/1405448023_paga-tu-cuota-con-pago-mis-cuentas",
+            "score": 70,
+            "analysis": "Club grande con proceso arcaico detectado (escanear y enviar comprobante), aunque su tamaño excede el ICP ideal.",
+            "contact_name": null,
+            "email": null,
+            "phone": null
+        },
+        {
+            "title": "Consigue tu entrada al partido solidario con un dulce",
+            "company_name": "Escuela de fútbol carenciada en Córdoba",
+            "url": "https:\/\/www.tiktok.com\/@sergionovaocio\/photo\/7584218759766805782",
+            "score": 40,
+            "analysis": "Menciona una escuela de fútbol en Córdoba, pero el contenido está enfocado a un evento solidario puntual.",
+            "contact_name": "Sergio Nova Ocio",
+            "email": null,
+            "phone": null
+        },
+        {
+            "title": "Comillas - Wikipedia, la enciclopedia libre",
+            "company_name": "Wikipedia",
+            "url": "https:\/\/es.wikipedia.org\/wiki\/Comillas",
+            "score": 0,
+            "analysis": "Resultado irrelevante sobre gramática y ortografía.",
+            "contact_name": null,
+            "email": null,
+            "phone": null
+        },
+        {
+            "title": "comillas | Diccionario panhispánico de dudas | RAE - ASALE",
+            "company_name": "Real Academia Española",
+            "url": "https:\/\/www.rae.es\/dpd\/comillas",
+            "score": 0,
+            "analysis": "Resultado irrelevante sobre gramática y ortografía.",
+            "contact_name": null,
+            "email": null,
+            "phone": null
+        },
+        {
+            "title": "comillas, uso de este signo ortográfico | FundéuRAE",
+            "company_name": "FundéuRAE",
+            "url": "https:\/\/www.fundeu.es\/recomendacion\/comillas-uso-de-este-signo-ortografico\/",
+            "score": 0,
+            "analysis": "Resultado irrelevante sobre gramática y ortografía.",
+            "contact_name": null,
+            "email": null,
+            "phone": null
+        },
+        {
+            "title": "Signos de puntuación. Comillas",
+            "company_name": "CIJ",
+            "url": "https:\/\/www.cij.gov.ar\/http:\/\/www.cij.gov.ar\/d\/doc-654.pdf",
+            "score": 0,
+            "analysis": "Resultado irrelevante sobre gramática y ortografía.",
+            "contact_name": null,
+            "email": null,
+            "phone": null
+        },
+        {
+            "title": "Usos de las COMILLAS | ¿Qué son? ‍",
+            "company_name": "YouTube",
+            "url": "https:\/\/www.youtube.com\/watch?v=F-SC3PtsSqY",
+            "score": 0,
+            "analysis": "Resultado irrelevante sobre gramática y ortografía.",
+            "contact_name": null,
+            "email": null,
+            "phone": null
+        },
+        {
+            "title": "¿Sabes hacer un uso correcto de las comillas? Ejemplos ...",
+            "company_name": "INESEM",
+            "url": "https:\/\/www.inesem.es\/revistadigital\/idiomas\/el-valor-de-los-signos-de-puntuacion-las-comillas",
+            "score": 0,
+            "analysis": "Resultado irrelevante sobre gramática y ortografía.",
+            "contact_name": null,
+            "email": null,
+            "phone": null
+        },
+        {
+            "title": "El uso correcto de comillas en la escritura académica",
+            "company_name": "Enago Academy",
+            "url": "https:\/\/www.enago.com\/academy\/latam\/correct-usage-of-quotation-marks-in-academic-writing\/",
+            "score": 0,
+            "analysis": "Resultado irrelevante sobre gramática y ortografía.",
+            "contact_name": null,
+            "email": null,
+            "phone": null
+        }
+    ]
+}

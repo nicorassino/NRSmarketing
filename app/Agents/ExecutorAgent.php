@@ -6,9 +6,26 @@ use App\Agents\Contracts\AgentResult;
 use App\Models\CampaignRun;
 use App\Models\Prospect;
 use App\Models\ProspectMessage;
+use App\Services\AI\GeminiService;
+use App\Services\Budget\BudgetService;
+use App\Services\Context\ContextManager;
+use App\Services\Messaging\EmailMessenger;
+use App\Services\Messaging\InstagramMessenger;
+use App\Services\Messaging\WhatsAppBridgeMessenger;
 
 class ExecutorAgent extends BaseAgent
 {
+    public function __construct(
+        GeminiService $gemini,
+        ContextManager $contextManager,
+        BudgetService $budgetService,
+        protected WhatsAppBridgeMessenger $whatsAppMessenger,
+        protected EmailMessenger $emailMessenger,
+        protected InstagramMessenger $instagramMessenger,
+    ) {
+        parent::__construct($gemini, $contextManager, $budgetService);
+    }
+
     public function getType(): string
     {
         return 'executor';
@@ -46,9 +63,13 @@ class ExecutorAgent extends BaseAgent
 
         foreach ($prospects as $prospect) {
             // Get the approved message for the selected channel
+            // Incluye `failed` para permitir reenvío sin volver a aprobar manualmente.
             $message = $prospect->messages()
                 ->where('channel', $prospect->selected_channel)
-                ->where('status', ProspectMessage::STATUS_APPROVED)
+                ->whereIn('status', [
+                    ProspectMessage::STATUS_APPROVED,
+                    ProspectMessage::STATUS_FAILED,
+                ])
                 ->first();
 
             if (!$message) {
@@ -56,7 +77,7 @@ class ExecutorAgent extends BaseAgent
                     'prospect' => $prospect->company_name,
                     'channel' => $prospect->selected_channel,
                     'status' => 'skipped',
-                    'reason' => 'No hay mensaje aprobado para este canal',
+                    'reason' => 'No hay mensaje aprobado (o fallido reintentable) para este canal',
                 ];
                 continue;
             }
@@ -131,57 +152,10 @@ class ExecutorAgent extends BaseAgent
     private function sendMessage(Prospect $prospect, ProspectMessage $message): array
     {
         return match ($message->channel) {
-            'whatsapp' => $this->sendWhatsApp($prospect, $message),
-            'email' => $this->sendEmail($prospect, $message),
-            'instagram' => $this->sendInstagram($prospect, $message),
+            'whatsapp' => $this->whatsAppMessenger->send($prospect, $message),
+            'email' => $this->emailMessenger->send($prospect, $message),
+            'instagram' => $this->instagramMessenger->send($prospect, $message),
             default => ['success' => false, 'error' => "Canal no soportado: {$message->channel}"],
         };
-    }
-
-    private function sendWhatsApp(Prospect $prospect, ProspectMessage $message): array
-    {
-        // TODO: Implement WhatsApp Cloud API integration
-        // For now, return a simulated result
-        if (empty($prospect->phone)) {
-            return ['success' => false, 'error' => 'No hay número de teléfono'];
-        }
-
-        return [
-            'success' => false,
-            'error' => 'WhatsApp API no configurada todavía',
-            'channel' => 'whatsapp',
-        ];
-    }
-
-    private function sendEmail(Prospect $prospect, ProspectMessage $message): array
-    {
-        if (empty($prospect->email)) {
-            return ['success' => false, 'error' => 'No hay email'];
-        }
-
-        try {
-            \Illuminate\Support\Facades\Mail::raw($message->content, function ($mail) use ($prospect, $message) {
-                $mail->to($prospect->email)
-                    ->subject($message->subject ?? 'Solución para ' . $prospect->company_name);
-            });
-
-            return ['success' => true, 'channel' => 'email'];
-        } catch (\Throwable $e) {
-            return ['success' => false, 'error' => $e->getMessage(), 'channel' => 'email'];
-        }
-    }
-
-    private function sendInstagram(Prospect $prospect, ProspectMessage $message): array
-    {
-        // TODO: Implement Instagram Graph API integration
-        if (empty($prospect->instagram_handle)) {
-            return ['success' => false, 'error' => 'No hay handle de Instagram'];
-        }
-
-        return [
-            'success' => false,
-            'error' => 'Instagram API no configurada todavía',
-            'channel' => 'instagram',
-        ];
     }
 }

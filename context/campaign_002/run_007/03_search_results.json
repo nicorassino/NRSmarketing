@@ -1,0 +1,744 @@
+{
+    "queries_used": [
+        "\"escuela de fútbol\" OR \"club deportivo\" (Mendiolaza OR \"Villa Allende\" OR Unquillo) \"inscripciones abiertas\"",
+        "site:facebook.com OR site:"
+    ],
+    "search_requests": [
+        {
+            "query": "\"escuela de fútbol\" OR \"club deportivo\" (Mendiolaza OR \"Villa Allende\" OR Unquillo) \"inscripciones abiertas\"",
+            "params": {
+                "engine": "google",
+                "location": "Mendiolaza,córdoba, argentina",
+                "hl": "es",
+                "gl": "ar",
+                "num": 7
+            }
+        },
+        {
+            "query": "\"escuela de fútbol\" OR \"club deportivo\" (Mendiolaza OR \"Villa Allende\" OR Unquillo) \"inscripciones abiertas\"",
+            "params": {
+                "engine": "google_maps",
+                "location": "Mendiolaza,córdoba, argentina",
+                "hl": "es"
+            }
+        },
+        {
+            "query": "site:facebook.com OR site:",
+            "params": {
+                "engine": "google",
+                "location": "Mendiolaza,córdoba, argentina",
+                "hl": "es",
+                "gl": "ar",
+                "num": 7
+            }
+        },
+        {
+            "query": "site:facebook.com OR site:",
+            "params": {
+                "engine": "google_maps",
+                "location": "Mendiolaza,córdoba, argentina",
+                "hl": "es"
+            }
+        }
+    ],
+    "total_raw_results": 36,
+    "total_after_merge": 26,
+    "total_scored": 26,
+    "total_saved": 26,
+    "merged_results": [
+        {
+            "title": "¡Escuela de fútbol Talleres Mendiolaza, Inscripciones abiertas! 👨‍ ...",
+            "url": "https:\/\/www.instagram.com\/p\/DVpMssKDdOI\/",
+            "snippet": "¡Escuela de fútbol Talleres Mendiolaza, Inscripciones abiertas! ‍ ‍ Para niños y niñas de 4 a 13 años Entrenamientos lunes y miércoles Turno 1: ...",
+            "position": 1,
+            "source": "google_organic",
+            "source_list": [
+                "google_organic",
+                "google_maps"
+            ],
+            "contact_richness": 6,
+            "phone": "+54 351 875-5555",
+            "instagram": "eleniasports",
+            "address": "Av. Colón 5852, X5806 Córdoba, Argentina"
+        },
+        {
+            "title": "Escuela formativa de futbol Talleres Unquillo",
+            "url": "https:\/\/instagram.com\/talleres_unquillo?igshid=MzRIODBiNWFIZA==",
+            "phone": "+54 3543 55-5877",
+            "address": "Sarmiento 367, X5109 Unquillo, Córdoba, Argentina",
+            "instagram": "talleres_unquillo",
+            "rating": 5,
+            "reviews": 3,
+            "type": "Escuela deportiva",
+            "source": "google_maps",
+            "source_list": [
+                "google_maps"
+            ],
+            "contact_richness": 6
+        },
+        {
+            "title": "Atención Socios Talleres • Sede Social",
+            "url": "http:\/\/www.clubtalleres.com.ar\/",
+            "phone": "+54 351 428-2716",
+            "address": "Rosario de Sta. Fe 15 1 piso, X5022 Córdoba, Argentina",
+            "instagram": null,
+            "rating": 4.6,
+            "reviews": 1202,
+            "type": "Club de fútbol",
+            "source": "google_maps",
+            "source_list": [
+                "google_maps"
+            ],
+            "contact_richness": 4
+        },
+        {
+            "title": "Escuela integral de fútbol Talleres de Mendiolaza",
+            "url": "",
+            "phone": "+54 351 225-3815",
+            "address": "Av. Malvinas Argentinas 5, X5107 Mendiolaza, Córdoba, Argentina",
+            "instagram": null,
+            "rating": 5,
+            "reviews": 2,
+            "type": "Escuela deportiva",
+            "source": "google_maps",
+            "source_list": [
+                "google_maps"
+            ],
+            "contact_richness": 4
+        },
+        {
+            "title": "Escuela Oficial de Fútbol Talleres Ciudad Universitaria",
+            "url": "",
+            "phone": "+54 351 595-7909",
+            "address": "Martín de Fonseca 429, X5000 Córdoba, Argentina",
+            "instagram": null,
+            "rating": 4.1,
+            "reviews": 20,
+            "type": "Escuela deportiva",
+            "source": "google_maps",
+            "source_list": [
+                "google_maps"
+            ],
+            "contact_richness": 4
+        },
+        {
+            "title": "Punto Soccer",
+            "url": "http:\/\/www.puntosoccerclub.com\/",
+            "phone": "+54 351 540-8247",
+            "address": "Av. las Malvinas 5520, X5012 Córdoba, Argentina",
+            "instagram": null,
+            "rating": 4.6,
+            "reviews": 42,
+            "type": "Club deportivo",
+            "source": "google_maps",
+            "source_list": [
+                "google_maps"
+            ],
+            "contact_richness": 4
+        },
+        {
+            "title": "Polideportivo Mendiolaza",
+            "url": "",
+            "phone": "+54 3543 64-4801",
+            "address": "Ruta Intermunicipal, X5107 Mendiolaza, Córdoba, Argentina",
+            "instagram": null,
+            "rating": 4.3,
+            "reviews": 941,
+            "type": "Estadio",
+            "source": "google_maps",
+            "source_list": [
+                "google_maps"
+            ],
+            "contact_richness": 4
+        },
+        {
+            "title": "Club Municipalidad de Córdoba",
+            "url": "https:\/\/es-la.facebook.com\/clubmunicipalidadcordoba\/",
+            "phone": "+54 351 433-6007",
+            "address": "Nicolás Avellaneda 2751, X5001FOU Córdoba, Argentina",
+            "instagram": null,
+            "rating": 4.3,
+            "reviews": 1779,
+            "type": "Club",
+            "source": "google_maps",
+            "source_list": [
+                "google_maps"
+            ],
+            "contact_richness": 4
+        },
+        {
+            "title": "Canchas de fútbol",
+            "url": "",
+            "phone": "+54 351 246-9794",
+            "address": "Friuli 1996, X5000 Córdoba, Argentina",
+            "instagram": null,
+            "rating": 4.4,
+            "reviews": 88,
+            "type": "Campo de fútbol",
+            "source": "google_maps",
+            "source_list": [
+                "google_maps"
+            ],
+            "contact_richness": 4
+        },
+        {
+            "title": "Centro Deportivo Villa Allende Agencia Córdoba Deportes",
+            "url": "",
+            "phone": "+54 3543 43-9259",
+            "address": "Av. Goycoechea 1810, El Ceibo, X5105DVS, Villa Allende, Córdoba, Argentina",
+            "instagram": null,
+            "rating": 4.3,
+            "reviews": 731,
+            "type": "Campo de fútbol",
+            "source": "google_maps",
+            "source_list": [
+                "google_maps"
+            ],
+            "contact_richness": 4
+        },
+        {
+            "title": "Villa Allende Sport Club",
+            "url": "",
+            "phone": "+54 3543 69-1919",
+            "address": "Av. Sáenz Peña 444, X5105 Villa Allende, Córdoba, Argentina",
+            "instagram": null,
+            "rating": 4.4,
+            "reviews": 192,
+            "type": "Escuela deportiva",
+            "source": "google_maps",
+            "source_list": [
+                "google_maps"
+            ],
+            "contact_richness": 4
+        },
+        {
+            "title": "Tiempo extra - complejo deportivo",
+            "url": "",
+            "phone": "+54 351 225-3815",
+            "address": "Av. Malvinas Argentinas, X5107 Mendiolaza, Córdoba, Argentina",
+            "instagram": null,
+            "rating": 5,
+            "reviews": 2,
+            "type": "Club deportivo",
+            "source": "google_maps",
+            "source_list": [
+                "google_maps"
+            ],
+            "contact_richness": 4
+        },
+        {
+            "title": "Complejo Sport Villa Allende",
+            "url": "",
+            "phone": "+54 3543 61-7029",
+            "address": "Balcarce 70, X5105BFB Villa Allende, Córdoba, Argentina",
+            "instagram": null,
+            "rating": 4.2,
+            "reviews": 347,
+            "type": "Polideportivo",
+            "source": "google_maps",
+            "source_list": [
+                "google_maps"
+            ],
+            "contact_richness": 4
+        },
+        {
+            "title": "Polideportivo Villa Allende \"Atilio Minoldo\"",
+            "url": "",
+            "phone": "+54 3543 43-9281",
+            "address": "Av. Roque Saenz Peña 300, X0551 Villa Allende, Córdoba, Argentina",
+            "instagram": null,
+            "rating": 4.4,
+            "reviews": 7191,
+            "type": "Polideportivo",
+            "source": "google_maps",
+            "source_list": [
+                "google_maps"
+            ],
+            "contact_richness": 4
+        },
+        {
+            "title": "Centro de Alto Rendimiento Club Atlético Talleres",
+            "url": "",
+            "phone": "",
+            "address": "RN A019, X5014 Córdoba, Argentina",
+            "instagram": null,
+            "rating": 4.5,
+            "reviews": 2101,
+            "type": "Polideportivo",
+            "source": "google_maps",
+            "source_list": [
+                "google_maps"
+            ],
+            "contact_richness": 1
+        },
+        {
+            "title": "Talleres Mendiolaza escuelita Integral de Fútbol.",
+            "url": "https:\/\/www.facebook.com\/p\/Talleres-Mendiolaza-escuelita-Integral-de-F%C3%BAtbol-100039448550247\/?locale=es_ES",
+            "snippet": "Escuela de fútbol Talleres Mendiolaza ⚽️ Inscripciones abiertas - 3512253815 Complejo deportivo \"Tiempo extra\" - Av. Malvinas Argentinas - Mendiolaza.",
+            "position": 2,
+            "source": "google_organic",
+            "source_list": [
+                "google_organic"
+            ],
+            "contact_richness": 0
+        },
+        {
+            "title": "Inicio | Escuela Integral de Fútbol Talleres Villa Allende",
+            "url": "https:\/\/talleresva.wixsite.com\/website-2",
+            "snippet": "La Escuela de fútbol tiene como objetivo fundamental la formación básica ... Inscripciones abiertas todo el año. Acercate a nuestro club. Sacamos de ...",
+            "position": 4,
+            "source": "google_organic",
+            "source_list": [
+                "google_organic"
+            ],
+            "contact_richness": 0
+        },
+        {
+            "title": "Escuela Integral de Fútbol - Talleres Villa Allende",
+            "url": "https:\/\/m.facebook.com\/100063680254515\/videos\/talleres-villa-allende\/491055429366136\/",
+            "snippet": "Inscripciones Abiertas. ... Escuela de fútbol filial Talleres Pablo Cuba. Escuela de fútbol filial ... Athlete ... Villa Allende. 󱙿. Videos. 󱙿. TALLERES VILLA ...",
+            "position": 8,
+            "source": "google_organic",
+            "source_list": [
+                "google_organic"
+            ],
+            "contact_richness": 0
+        },
+        {
+            "title": "Los entrenamientos de nuestro Club Deportivo Penales se ...",
+            "url": "https:\/\/www.threads.com\/@club.deportivopenales\/post\/DWrUTL9EbiI\/informacion-importante-los-entrenamientos-de-nuestro-club-deportivo-penales-se",
+            "snippet": "Club Deportivo Penales (@club.deportivopenales). Información ... March 17, 2026 at 7:21 PM. INSCRIPCIONES ABIERTAS. Categorías 2012 ...",
+            "position": 9,
+            "source": "google_organic",
+            "source_list": [
+                "google_organic"
+            ],
+            "contact_richness": 0
+        },
+        {
+            "title": "Sistema Integral de Trámites Electrónicos - Ministerio de Justicia",
+            "url": "https:\/\/www2.jus.gob.ar\/dnrpa-site\/",
+            "snippet": "Registrá tu firma digital en los más de mil registros de propiedad automotor de todo el país. Estimador de costos. Calculá los costos aproximados para la ...",
+            "position": 1,
+            "source": "google_organic",
+            "source_list": [
+                "google_organic"
+            ],
+            "contact_richness": 0
+        },
+        {
+            "title": "Google Drive: Sign-in",
+            "url": "https:\/\/sites.google.com\/",
+            "snippet": "Access Google Drive with a Google account (for personal use) or Google Workspace account (for business use).",
+            "position": 2,
+            "source": "google_organic",
+            "source_list": [
+                "google_organic"
+            ],
+            "contact_richness": 0
+        },
+        {
+            "title": "Google Sites: Creador y host de sitios web",
+            "url": "https:\/\/workspace.google.com\/intl\/es-419\/products\/sites\/",
+            "snippet": "Crea, edita y diseña fácilmente tus sitios arrastrando y soltando elementos. El diseño de cuadrícula automático garantiza que el contenido luzca perfecto y ...",
+            "position": 4,
+            "source": "google_organic",
+            "source_list": [
+                "google_organic"
+            ],
+            "contact_richness": 0
+        },
+        {
+            "title": "Cómo usar el operador de búsqueda site",
+            "url": "https:\/\/developers.google.com\/search\/docs\/monitor-debug\/search-operators\/all-search-site?hl=es-419",
+            "snippet": "Obtén información sobre el operador de búsqueda site: y cómo puede ayudarte a depurar y comprender la forma en la que Google ve tu sitio web.",
+            "position": 5,
+            "source": "google_organic",
+            "source_list": [
+                "google_organic"
+            ],
+            "contact_richness": 0
+        },
+        {
+            "title": "Creador de sitios web con IA: Crea tu propio sitio web - Site.pro",
+            "url": "https:\/\/site.pro\/es\/",
+            "snippet": "Creador de sitios web con IA. Cualquiera puede crear fácilmente un sitio web, página de aterrizaje o comercio electrónico. Sitios web ilimitados, Servidores ...",
+            "position": 6,
+            "source": "google_organic",
+            "source_list": [
+                "google_organic"
+            ],
+            "contact_richness": 0
+        },
+        {
+            "title": "SITE - Wikipedia, la enciclopedia libre",
+            "url": "https:\/\/es.wikipedia.org\/wiki\/SITE",
+            "snippet": "Sculpture in the Environment, más conocido por su acrónimo SITE, es un estudio de arquitectura neoyorquino fundado en 1970 por James Wines y Alison Sky.",
+            "position": 7,
+            "source": "google_organic",
+            "source_list": [
+                "google_organic"
+            ],
+            "contact_richness": 0
+        },
+        {
+            "title": "SITE Global: Home",
+            "url": "https:\/\/siteglobal.com\/",
+            "snippet": "SITE offers a number of options and categories for individual and group membership. Find the one the best suits you and connect with the Business Events ...",
+            "position": 8,
+            "source": "google_organic",
+            "source_list": [
+                "google_organic"
+            ],
+            "contact_richness": 0
+        }
+    ],
+    "results": [
+        {
+            "title": "¡Escuela de fútbol Talleres Mendiolaza, Inscripciones abiertas! 👨‍ ...",
+            "url": "https:\/\/www.instagram.com\/p\/DVpMssKDdOI\/",
+            "snippet": "¡Escuela de fútbol Talleres Mendiolaza, Inscripciones abiertas! ‍ ‍ Para niños y niñas de 4 a 13 años Entrenamientos lunes y miércoles Turno 1: ...",
+            "position": 1,
+            "source": "google_organic",
+            "source_list": [
+                "google_organic",
+                "google_maps"
+            ],
+            "contact_richness": 6,
+            "phone": "+54 351 875-5555",
+            "instagram": "eleniasports",
+            "address": "Av. Colón 5852, X5806 Córdoba, Argentina"
+        },
+        {
+            "title": "Escuela formativa de futbol Talleres Unquillo",
+            "url": "https:\/\/instagram.com\/talleres_unquillo?igshid=MzRIODBiNWFIZA==",
+            "phone": "+54 3543 55-5877",
+            "address": "Sarmiento 367, X5109 Unquillo, Córdoba, Argentina",
+            "instagram": "talleres_unquillo",
+            "rating": 5,
+            "reviews": 3,
+            "type": "Escuela deportiva",
+            "source": "google_maps",
+            "source_list": [
+                "google_maps"
+            ],
+            "contact_richness": 6
+        },
+        {
+            "title": "Atención Socios Talleres • Sede Social",
+            "url": "http:\/\/www.clubtalleres.com.ar\/",
+            "phone": "+54 351 428-2716",
+            "address": "Rosario de Sta. Fe 15 1 piso, X5022 Córdoba, Argentina",
+            "instagram": null,
+            "rating": 4.6,
+            "reviews": 1202,
+            "type": "Club de fútbol",
+            "source": "google_maps",
+            "source_list": [
+                "google_maps"
+            ],
+            "contact_richness": 4
+        },
+        {
+            "title": "Escuela integral de fútbol Talleres de Mendiolaza",
+            "url": "",
+            "phone": "+54 351 225-3815",
+            "address": "Av. Malvinas Argentinas 5, X5107 Mendiolaza, Córdoba, Argentina",
+            "instagram": null,
+            "rating": 5,
+            "reviews": 2,
+            "type": "Escuela deportiva",
+            "source": "google_maps",
+            "source_list": [
+                "google_maps"
+            ],
+            "contact_richness": 4
+        },
+        {
+            "title": "Escuela Oficial de Fútbol Talleres Ciudad Universitaria",
+            "url": "",
+            "phone": "+54 351 595-7909",
+            "address": "Martín de Fonseca 429, X5000 Córdoba, Argentina",
+            "instagram": null,
+            "rating": 4.1,
+            "reviews": 20,
+            "type": "Escuela deportiva",
+            "source": "google_maps",
+            "source_list": [
+                "google_maps"
+            ],
+            "contact_richness": 4
+        },
+        {
+            "title": "Punto Soccer",
+            "url": "http:\/\/www.puntosoccerclub.com\/",
+            "phone": "+54 351 540-8247",
+            "address": "Av. las Malvinas 5520, X5012 Córdoba, Argentina",
+            "instagram": null,
+            "rating": 4.6,
+            "reviews": 42,
+            "type": "Club deportivo",
+            "source": "google_maps",
+            "source_list": [
+                "google_maps"
+            ],
+            "contact_richness": 4
+        },
+        {
+            "title": "Polideportivo Mendiolaza",
+            "url": "",
+            "phone": "+54 3543 64-4801",
+            "address": "Ruta Intermunicipal, X5107 Mendiolaza, Córdoba, Argentina",
+            "instagram": null,
+            "rating": 4.3,
+            "reviews": 941,
+            "type": "Estadio",
+            "source": "google_maps",
+            "source_list": [
+                "google_maps"
+            ],
+            "contact_richness": 4
+        },
+        {
+            "title": "Club Municipalidad de Córdoba",
+            "url": "https:\/\/es-la.facebook.com\/clubmunicipalidadcordoba\/",
+            "phone": "+54 351 433-6007",
+            "address": "Nicolás Avellaneda 2751, X5001FOU Córdoba, Argentina",
+            "instagram": null,
+            "rating": 4.3,
+            "reviews": 1779,
+            "type": "Club",
+            "source": "google_maps",
+            "source_list": [
+                "google_maps"
+            ],
+            "contact_richness": 4
+        },
+        {
+            "title": "Canchas de fútbol",
+            "url": "",
+            "phone": "+54 351 246-9794",
+            "address": "Friuli 1996, X5000 Córdoba, Argentina",
+            "instagram": null,
+            "rating": 4.4,
+            "reviews": 88,
+            "type": "Campo de fútbol",
+            "source": "google_maps",
+            "source_list": [
+                "google_maps"
+            ],
+            "contact_richness": 4
+        },
+        {
+            "title": "Centro Deportivo Villa Allende Agencia Córdoba Deportes",
+            "url": "",
+            "phone": "+54 3543 43-9259",
+            "address": "Av. Goycoechea 1810, El Ceibo, X5105DVS, Villa Allende, Córdoba, Argentina",
+            "instagram": null,
+            "rating": 4.3,
+            "reviews": 731,
+            "type": "Campo de fútbol",
+            "source": "google_maps",
+            "source_list": [
+                "google_maps"
+            ],
+            "contact_richness": 4
+        },
+        {
+            "title": "Villa Allende Sport Club",
+            "url": "",
+            "phone": "+54 3543 69-1919",
+            "address": "Av. Sáenz Peña 444, X5105 Villa Allende, Córdoba, Argentina",
+            "instagram": null,
+            "rating": 4.4,
+            "reviews": 192,
+            "type": "Escuela deportiva",
+            "source": "google_maps",
+            "source_list": [
+                "google_maps"
+            ],
+            "contact_richness": 4
+        },
+        {
+            "title": "Tiempo extra - complejo deportivo",
+            "url": "",
+            "phone": "+54 351 225-3815",
+            "address": "Av. Malvinas Argentinas, X5107 Mendiolaza, Córdoba, Argentina",
+            "instagram": null,
+            "rating": 5,
+            "reviews": 2,
+            "type": "Club deportivo",
+            "source": "google_maps",
+            "source_list": [
+                "google_maps"
+            ],
+            "contact_richness": 4
+        },
+        {
+            "title": "Complejo Sport Villa Allende",
+            "url": "",
+            "phone": "+54 3543 61-7029",
+            "address": "Balcarce 70, X5105BFB Villa Allende, Córdoba, Argentina",
+            "instagram": null,
+            "rating": 4.2,
+            "reviews": 347,
+            "type": "Polideportivo",
+            "source": "google_maps",
+            "source_list": [
+                "google_maps"
+            ],
+            "contact_richness": 4
+        },
+        {
+            "title": "Polideportivo Villa Allende \"Atilio Minoldo\"",
+            "url": "",
+            "phone": "+54 3543 43-9281",
+            "address": "Av. Roque Saenz Peña 300, X0551 Villa Allende, Córdoba, Argentina",
+            "instagram": null,
+            "rating": 4.4,
+            "reviews": 7191,
+            "type": "Polideportivo",
+            "source": "google_maps",
+            "source_list": [
+                "google_maps"
+            ],
+            "contact_richness": 4
+        },
+        {
+            "title": "Centro de Alto Rendimiento Club Atlético Talleres",
+            "url": "",
+            "phone": "",
+            "address": "RN A019, X5014 Córdoba, Argentina",
+            "instagram": null,
+            "rating": 4.5,
+            "reviews": 2101,
+            "type": "Polideportivo",
+            "source": "google_maps",
+            "source_list": [
+                "google_maps"
+            ],
+            "contact_richness": 1
+        },
+        {
+            "title": "Talleres Mendiolaza escuelita Integral de Fútbol.",
+            "url": "https:\/\/www.facebook.com\/p\/Talleres-Mendiolaza-escuelita-Integral-de-F%C3%BAtbol-100039448550247\/?locale=es_ES",
+            "snippet": "Escuela de fútbol Talleres Mendiolaza ⚽️ Inscripciones abiertas - 3512253815 Complejo deportivo \"Tiempo extra\" - Av. Malvinas Argentinas - Mendiolaza.",
+            "position": 2,
+            "source": "google_organic",
+            "source_list": [
+                "google_organic"
+            ],
+            "contact_richness": 0
+        },
+        {
+            "title": "Inicio | Escuela Integral de Fútbol Talleres Villa Allende",
+            "url": "https:\/\/talleresva.wixsite.com\/website-2",
+            "snippet": "La Escuela de fútbol tiene como objetivo fundamental la formación básica ... Inscripciones abiertas todo el año. Acercate a nuestro club. Sacamos de ...",
+            "position": 4,
+            "source": "google_organic",
+            "source_list": [
+                "google_organic"
+            ],
+            "contact_richness": 0
+        },
+        {
+            "title": "Escuela Integral de Fútbol - Talleres Villa Allende",
+            "url": "https:\/\/m.facebook.com\/100063680254515\/videos\/talleres-villa-allende\/491055429366136\/",
+            "snippet": "Inscripciones Abiertas. ... Escuela de fútbol filial Talleres Pablo Cuba. Escuela de fútbol filial ... Athlete ... Villa Allende. 󱙿. Videos. 󱙿. TALLERES VILLA ...",
+            "position": 8,
+            "source": "google_organic",
+            "source_list": [
+                "google_organic"
+            ],
+            "contact_richness": 0
+        },
+        {
+            "title": "Los entrenamientos de nuestro Club Deportivo Penales se ...",
+            "url": "https:\/\/www.threads.com\/@club.deportivopenales\/post\/DWrUTL9EbiI\/informacion-importante-los-entrenamientos-de-nuestro-club-deportivo-penales-se",
+            "snippet": "Club Deportivo Penales (@club.deportivopenales). Información ... March 17, 2026 at 7:21 PM. INSCRIPCIONES ABIERTAS. Categorías 2012 ...",
+            "position": 9,
+            "source": "google_organic",
+            "source_list": [
+                "google_organic"
+            ],
+            "contact_richness": 0
+        },
+        {
+            "title": "Sistema Integral de Trámites Electrónicos - Ministerio de Justicia",
+            "url": "https:\/\/www2.jus.gob.ar\/dnrpa-site\/",
+            "snippet": "Registrá tu firma digital en los más de mil registros de propiedad automotor de todo el país. Estimador de costos. Calculá los costos aproximados para la ...",
+            "position": 1,
+            "source": "google_organic",
+            "source_list": [
+                "google_organic"
+            ],
+            "contact_richness": 0
+        },
+        {
+            "title": "Google Drive: Sign-in",
+            "url": "https:\/\/sites.google.com\/",
+            "snippet": "Access Google Drive with a Google account (for personal use) or Google Workspace account (for business use).",
+            "position": 2,
+            "source": "google_organic",
+            "source_list": [
+                "google_organic"
+            ],
+            "contact_richness": 0
+        },
+        {
+            "title": "Google Sites: Creador y host de sitios web",
+            "url": "https:\/\/workspace.google.com\/intl\/es-419\/products\/sites\/",
+            "snippet": "Crea, edita y diseña fácilmente tus sitios arrastrando y soltando elementos. El diseño de cuadrícula automático garantiza que el contenido luzca perfecto y ...",
+            "position": 4,
+            "source": "google_organic",
+            "source_list": [
+                "google_organic"
+            ],
+            "contact_richness": 0
+        },
+        {
+            "title": "Cómo usar el operador de búsqueda site",
+            "url": "https:\/\/developers.google.com\/search\/docs\/monitor-debug\/search-operators\/all-search-site?hl=es-419",
+            "snippet": "Obtén información sobre el operador de búsqueda site: y cómo puede ayudarte a depurar y comprender la forma en la que Google ve tu sitio web.",
+            "position": 5,
+            "source": "google_organic",
+            "source_list": [
+                "google_organic"
+            ],
+            "contact_richness": 0
+        },
+        {
+            "title": "Creador de sitios web con IA: Crea tu propio sitio web - Site.pro",
+            "url": "https:\/\/site.pro\/es\/",
+            "snippet": "Creador de sitios web con IA. Cualquiera puede crear fácilmente un sitio web, página de aterrizaje o comercio electrónico. Sitios web ilimitados, Servidores ...",
+            "position": 6,
+            "source": "google_organic",
+            "source_list": [
+                "google_organic"
+            ],
+            "contact_richness": 0
+        },
+        {
+            "title": "SITE - Wikipedia, la enciclopedia libre",
+            "url": "https:\/\/es.wikipedia.org\/wiki\/SITE",
+            "snippet": "Sculpture in the Environment, más conocido por su acrónimo SITE, es un estudio de arquitectura neoyorquino fundado en 1970 por James Wines y Alison Sky.",
+            "position": 7,
+            "source": "google_organic",
+            "source_list": [
+                "google_organic"
+            ],
+            "contact_richness": 0
+        },
+        {
+            "title": "SITE Global: Home",
+            "url": "https:\/\/siteglobal.com\/",
+            "snippet": "SITE offers a number of options and categories for individual and group membership. Find the one the best suits you and connect with the Business Events ...",
+            "position": 8,
+            "source": "google_organic",
+            "source_list": [
+                "google_organic"
+            ],
+            "contact_richness": 0
+        }
+    ]
+}

@@ -1,0 +1,23 @@
+{
+    "executed_at": "2026-04-09T18:46:24.357234Z",
+    "total_prospects": 1,
+    "sent": 0,
+    "failed": 1,
+    "results": [
+        {
+            "prospect": "Talleres Mendiolaza",
+            "channel": "whatsapp",
+            "status": "failed",
+            "details": {
+                "success": false,
+                "error": "No LID for user\nnew Error (<anonymous>:6:31)",
+                "channel": "whatsapp",
+                "http_status": 500,
+                "response": {
+                    "ok": false,
+                    "error": "No LID for user\nnew Error (<anonymous>:6:31)"
+                }
+            }
+        }
+    ]
+}

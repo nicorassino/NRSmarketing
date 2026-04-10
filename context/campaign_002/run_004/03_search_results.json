@@ -1,0 +1,152 @@
+{
+    "queries_used": [
+        "\"escuela de fútbol\" Mendiolaza \"enviar comprobante\"",
+        "\"escuela de fútbol\" \"Villa Allende\" whatsapp inscripciones",
+        "\"escuela de fútbol\" Unquillo \"en"
+    ],
+    "search_requests": [
+        {
+            "query": "\"escuela de fútbol\" Mendiolaza \"enviar comprobante\"",
+            "params": {
+                "engine": "google",
+                "location": "Mendiolaza,córdoba, argentina",
+                "hl": "es",
+                "gl": "ar",
+                "num": 4
+            }
+        },
+        {
+            "query": "\"escuela de fútbol\" Mendiolaza \"enviar comprobante\"",
+            "params": {
+                "engine": "google_maps",
+                "location": "Mendiolaza,córdoba, argentina",
+                "hl": "es"
+            }
+        },
+        {
+            "query": "\"escuela de fútbol\" \"Villa Allende\" whatsapp inscripciones",
+            "params": {
+                "engine": "google",
+                "location": "Mendiolaza,córdoba, argentina",
+                "hl": "es",
+                "gl": "ar",
+                "num": 4
+            }
+        },
+        {
+            "query": "\"escuela de fútbol\" \"Villa Allende\" whatsapp inscripciones",
+            "params": {
+                "engine": "google_maps",
+                "location": "Mendiolaza,córdoba, argentina",
+                "hl": "es"
+            }
+        },
+        {
+            "query": "\"escuela de fútbol\" Unquillo \"en",
+            "params": {
+                "engine": "google",
+                "location": "Mendiolaza,córdoba, argentina",
+                "hl": "es",
+                "gl": "ar",
+                "num": 4
+            }
+        },
+        {
+            "query": "\"escuela de fútbol\" Unquillo \"en",
+            "params": {
+                "engine": "google_maps",
+                "location": "Mendiolaza,córdoba, argentina",
+                "hl": "es"
+            }
+        }
+    ],
+    "total_raw_results": 8,
+    "total_scored": 8,
+    "total_saved": 8,
+    "results": [
+        {
+            "title": "Escuela de futbol talleres Mendiolaza ...",
+            "url": "https:\/\/www.instagram.com\/talleres_mendiolaza\/",
+            "snippet": "Escuela de futbol oficial del club atletico Talleres Entrenamientos los días lunes y miercoles 18.30 a 19.45 hs, te esperamos !!! ⚽️ Consultas al 3512253815 ...",
+            "position": 1,
+            "source": "google_organic",
+            "score": 50,
+            "analysis": "Sin análisis"
+        },
+        {
+            "title": "Deportes",
+            "url": "https:\/\/mendiolaza.gob.ar\/deportes\/",
+            "snippet": "Escuelas de deporte · Malvinas 189. Mendiolaza. · (03543) 642525 · deportes@mendiolaza.gob.ar ...",
+            "position": 2,
+            "source": "google_organic",
+            "score": 50,
+            "analysis": "Sin análisis"
+        },
+        {
+            "title": "Talleres Mendiolaza escuelita Integral de Fútbol.",
+            "url": "https:\/\/www.facebook.com\/p\/Talleres-Mendiolaza-escuelita-Integral-de-F%C3%BAtbol-100039448550247\/",
+            "snippet": "Que esperas para sumarte??? Vení proba una semana sin cargo, te esperamos ⚽️ Informes al 3512253815. Red Oficial del Club Atlético Talleres de Córdoba @ ...",
+            "position": 3,
+            "source": "google_organic",
+            "score": 50,
+            "analysis": "Sin análisis"
+        },
+        {
+            "title": "Se viene la Academia Talleres en Mendiolaza: lo que tenés ...",
+            "url": "https:\/\/www.clubtalleres.com.ar\/se-viene-la-academia-talleres-en-mendiolaza-lo-que-tenes-que-saber-para-no-quedar-afuera\/",
+            "snippet": "El objetivo es claro, acercar la experiencia Talleres a más familias, generando espacios donde el fútbol sea una herramienta para educar, ...",
+            "position": 4,
+            "source": "google_organic",
+            "score": 50,
+            "analysis": "Sin análisis"
+        },
+        {
+            "title": "Has buscado listado escuelas cordoba",
+            "url": "https:\/\/www.cba.gov.ar\/search\/listado+escuelas+cordoba\/feed\/rss2\/",
+            "snippet": "... entrenamiento laboral deberán buscar una empresa, ponerse en contacto y enviar su CV. También podrán consultar el listado de referencia en la web antes ...",
+            "position": 9,
+            "source": "google_organic",
+            "score": 50,
+            "analysis": "Sin análisis"
+        },
+        {
+            "title": "Villa Allende Sport Club",
+            "url": "",
+            "phone": "+54 3543 69-1919",
+            "address": "Av. Sáenz Peña 444, X5105 Villa Allende, Córdoba, Argentina",
+            "instagram": null,
+            "rating": 4.4,
+            "reviews": 192,
+            "type": "Escuela deportiva",
+            "source": "google_maps",
+            "score": 50,
+            "analysis": "Sin análisis"
+        },
+        {
+            "title": "Agencia Córdoba Deportes",
+            "url": "https:\/\/deportes.cba.gov.ar\/",
+            "phone": "+54 351 568-5704",
+            "address": "Estadio Mario Alberto Kempes, Ramón Cárcano S\/N, Córdoba, Argentina",
+            "instagram": null,
+            "rating": 4,
+            "reviews": 78,
+            "type": "Escuela deportiva",
+            "source": "google_maps",
+            "score": 50,
+            "analysis": "Sin análisis"
+        },
+        {
+            "title": "Escuela formativa de futbol Talleres Unquillo",
+            "url": "https:\/\/instagram.com\/talleres_unquillo?igshid=MzRIODBiNWFIZA==",
+            "phone": "+54 3543 55-5877",
+            "address": "Sarmiento 367, X5109 Unquillo, Córdoba, Argentina",
+            "instagram": "talleres_unquillo",
+            "rating": 5,
+            "reviews": 3,
+            "type": "Escuela deportiva",
+            "source": "google_maps",
+            "score": 50,
+            "analysis": "Sin análisis"
+        }
+    ]
+}

@@ -32,6 +32,8 @@ PROMPT,
         'model' => env('GEMINI_FLASH_MODEL', 'gemini-2.5-flash'),
         'max_searches' => 10,
         'max_results_per_search' => 20,
+        'maps_enabled' => true,
+        'maps_searches' => 3,
         'description' => 'Ejecuta búsquedas web basadas en la misión y encuentra prospectos calificados.',
     ],
 
@@ -42,7 +44,7 @@ PROMPT,
         'batch_size' => 10,
         'delay_between_messages' => 30,
         'channels' => ['whatsapp', 'email', 'instagram'],
-        'description' => 'Genera mensajes personalizados y los envía por el canal seleccionado.',
+        'description' => 'Genera mensajes personalizados y los envia por el canal seleccionado (WhatsApp bridge + email).',
         'system_prompt' => <<<'PROMPT'
 Eres un copywriter experto en ventas B2B por mensajería directa.
 Tu trabajo es redactar mensajes cortos, personalizados y que generen curiosidad.

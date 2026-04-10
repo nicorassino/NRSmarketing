@@ -1,0 +1,795 @@
+# NRSMarketing — Plataforma de Prospección Inteligente con Agentes de IA
+
+## Visión General
+
+NRSMarketing es una plataforma de prospección inteligente que utiliza una **cadena de agentes de IA** para automatizar el ciclo completo: desde el análisis de un producto de software hasta el envío de mensajes personalizados a prospectos calificados. El sistema implementa un patrón de **"Auto-Prompting"** donde cada agente genera la misión del siguiente, con un humano en el bucle para aprobación y edición.
+
+---
+
+## Decisión Tecnológica
+
+### Stack Elegido: **Laravel 11 + Livewire 3 + MySQL**
+
+| Criterio | Decisión | Justificación |
+|----------|----------|---------------|
+| **Lenguaje** | PHP 8.2+ | Nativo en WAMP, soporte total en Hostinger Cloud, ecosistema maduro |
+| **Framework** | Laravel 11 | Queue system para orquestación de agentes, Events/Listeners, Jobs pipeline, Sanctum para API |
+| **Frontend** | Livewire 3 + Alpine.js | UI reactiva sin salir de PHP, ideal para inbox interactivo y chat en tiempo real |
+| **Base de datos** | MySQL 8.0 | Requisito del usuario, soporte nativo en ambos entornos |
+| **IA (Análisis)** | Gemini 2.5 Pro | Análisis profundo del producto, estrategia. Se ejecuta **una sola vez** por producto |
+| **IA (Mensajes)** | Gemini 2.5 Flash | Redacción de borradores de mensajes. Más rápido y económico |
+| **IA (Chat)** | Gemini 2.5 Flash | Chat Global con contexto completo |
+| **Búsqueda** | SerpAPI + Web Scraping | Para el Agente Scout: búsquedas programáticas en Google |
+| **Tiempo Real** | Laravel Reverb | WebSockets nativo de Laravel, sin dependencias externas |
+| **Mensajería** | WhatsApp Cloud API + SMTP + Instagram Graph API | Selección **manual** de canal por cada prospecto |
+
+> [!IMPORTANT]
+> **¿Por qué Laravel y no Node.js o Python?**
+> - Tu entorno actual es WAMP (PHP/MySQL/Apache) — cero fricción para arrancar
+> - Hostinger Cloud tiene soporte PHP de primera clase con SSH
+> - El sistema de **Queue Jobs** de Laravel es perfecto para orquestar agentes como una pipeline
+> - Livewire 3 permite construir la UI reactiva (inbox, chat) sin necesidad de un framework JS separado
+> - Las llamadas a APIs de IA (Gemini) son HTTP requests estándar — funcionan igual desde PHP que desde Python
+
+---
+
+## Decisiones Confirmadas
+
+| Decisión | Resolución |
+|----------|------------|
+| **Modelos de IA** | Gemini 2.5 Pro para análisis de producto (1 sola vez), Gemini 2.5 Flash para mensajes y chat |
+| **Canales de mensajería** | Selección manual por prospecto al revisar borradores |
+| **Autenticación** | Login seguro simple, sin sistema de roles |
+| **Presupuesto APIs** | ~$5 USD/mes con tracking de consumo y alertas en la app |
+| **Hosting** | Hostinger Cloud con SSH (queue workers via supervisor) |
+
+---
+
+## Arquitectura del Sistema
+
+### Diagrama de Flujo de Agentes
+
+```mermaid
+flowchart TD
+    A["📄 Documentación del Producto"] --> B["🤖 Agente Analista"]
+    B --> |"Genera 01_product_analysis.md"| C["📋 Misión de Búsqueda"]
+    C --> |"Genera 02_scout_mission.md"| D{"👤 Humano Revisa Misión"}
+    D --> |"Edita/Aprueba"| E["🔍 Agente Scout"]
+    D --> |"Descarta"| F["🗑️ Fin"]
+    E --> |"Genera 03_search_results.json"| G["📥 Bandeja de Entrada"]
+    G --> |"Aprueba prospectos"| H["✉️ Editor de Mensajes"]
+    H --> |"Genera 04_selected_leads.json"| I["📤 Agente Ejecutor"]
+    I --> J["WhatsApp / Email / Instagram"]
+    
+    K["💬 Chat Global"] -.-> |"Lee/Modifica Context Files"| B
+    K -.-> |"Reinicia con nueva instrucción"| E
+    K -.-> |"Accede a todo el contexto"| G
+    
+    style B fill:#4F46E5,color:#fff
+    style E fill:#059669,color:#fff
+    style G fill:#D97706,color:#fff
+    style I fill:#DC2626,color:#fff
+    style K fill:#7C3AED,color:#fff
+```
+
+### Diagrama de Arquitectura Técnica
+
+```mermaid
+graph TB
+    subgraph Frontend["Frontend — Livewire 3 + Alpine.js"]
+        UI1["Dashboard"]
+        UI2["Gestión de Productos"]
+        UI3["Campañas / Runs"]
+        UI4["Bandeja de Entrada"]
+        UI5["Chat Global"]
+    end
+
+    subgraph Backend["Backend — Laravel 11"]
+        subgraph Agents["Sistema de Agentes"]
+            AG1["AnalystAgent"]
+            AG2["ScoutAgent"]
+            AG3["ExecutorAgent"]
+        end
+        
+        subgraph Services["Servicios"]
+            S1["GeminiService"]
+            S2["SerpApiService"]
+            S3["ContextManager"]
+            S4["AgentOrchestrator"]
+        end
+        
+        subgraph Queue["Queue System"]
+            J1["RunAnalystJob"]
+            J2["RunScoutJob"]
+            J3["RunExecutorJob"]
+        end
+    end
+
+    subgraph Storage["Persistencia"]
+        DB["MySQL 8.0"]
+        FS["Context Files — /context/"]
+    end
+
+    subgraph External["APIs Externas"]
+        EX1["Gemini 1.5 Pro"]
+        EX2["SerpAPI"]
+        EX3["WhatsApp Cloud API"]
+        EX4["SMTP Server"]
+        EX5["Instagram Graph API"]
+    end
+
+    Frontend --> Backend
+    Agents --> Services
+    Queue --> Agents
+    Services --> External
+    Backend --> Storage
+
+    style Frontend fill:#1E293B,color:#fff
+    style Backend fill:#0F172A,color:#fff
+    style Storage fill:#164E63,color:#fff
+    style External fill:#4C1D95,color:#fff
+```
+
+---
+
+## Proposed Changes
+
+### Estructura de Archivos del Proyecto
+
+```
+NRSmarketing/
+├── app/
+│   ├── Agents/                          # Core del sistema de agentes
+│   │   ├── Contracts/
+│   │   │   └── AgentInterface.php       # Contrato base para todos los agentes
+│   │   ├── BaseAgent.php                # Clase abstracta con lógica común
+│   │   ├── AnalystAgent.php             # Analiza docs, extrae pain points
+│   │   ├── ScoutAgent.php               # Busca prospectos en la web
+│   │   └── ExecutorAgent.php            # Envía mensajes multi-canal
+│   │
+│   ├── Services/
+│   │   ├── AI/
+│   │   │   ├── GeminiService.php        # Cliente HTTP para Gemini API
+│   │   │   └── PromptBuilder.php        # Construye prompts con contexto
+│   │   ├── Search/
+│   │   │   ├── SerpApiService.php       # Búsquedas via SerpAPI
+│   │   │   └── WebAnalyzerService.php   # Analiza sitios web de prospectos
+│   │   ├── Messaging/
+│   │   │   ├── Contracts/
+│   │   │   │   └── MessengerInterface.php
+│   │   │   ├── WhatsAppMessenger.php    # WhatsApp Cloud API
+│   │   │   ├── EmailMessenger.php       # SMTP via Laravel Mail
+│   │   │   └── InstagramMessenger.php   # Instagram Graph API
+│   │   ├── Context/
+│   │   │   └── ContextManager.php       # Lee/escribe archivos de contexto
+│   │   └── Pipeline/
+│   │       └── AgentOrchestrator.php    # Orquesta la cadena de agentes
+│   │
+│   ├── Models/
+│   │   ├── Product.php                  # Producto de software
+│   │   ├── ProductDocument.php          # Documento/manual del producto
+│   │   ├── Campaign.php                 # Campaña de prospección
+│   │   ├── CampaignRun.php             # Ejecución individual de una campaña
+│   │   ├── AgentExecution.php           # Registro de ejecución de agente
+│   │   ├── ContextFile.php             # Referencia a archivo de contexto
+│   │   ├── Prospect.php                # Prospecto encontrado
+│   │   ├── ProspectMessage.php         # Mensaje generado para prospecto
+│   │   ├── ChatConversation.php        # Conversación del chat global
+│   │   └── ChatMessage.php            # Mensaje individual del chat
+│   │
+│   ├── Jobs/
+│   │   ├── RunAnalystAgentJob.php       # Job async para Agente Analista
+│   │   ├── RunScoutAgentJob.php         # Job async para Agente Scout
+│   │   ├── RunExecutorAgentJob.php      # Job async para Agente Ejecutor
+│   │   └── AnalyzeProspectWebsite.php   # Job para analizar sitio web individual
+│   │
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   ├── DashboardController.php
+│   │   │   ├── ProductController.php
+│   │   │   ├── CampaignController.php
+│   │   │   └── Api/
+│   │   │       └── WebhookController.php  # Webhooks WhatsApp/IG
+│   │   └── Livewire/
+│   │       ├── Dashboard/
+│   │       │   └── StatsOverview.php
+│   │       ├── Products/
+│   │       │   ├── ProductList.php
+│   │       │   ├── ProductForm.php
+│   │       │   └── DocumentUpload.php
+│   │       ├── Campaigns/
+│   │       │   ├── CampaignList.php
+│   │       │   ├── CampaignWizard.php    # Wizard paso a paso
+│   │       │   ├── MissionEditor.php     # Textarea para editar misión Scout
+│   │       │   └── RunTimeline.php       # Timeline visual del run
+│   │       ├── Inbox/
+│   │       │   ├── ProspectInbox.php     # Lista de prospectos para revisar
+│   │       │   ├── ProspectCard.php      # Card individual con acciones
+│   │       │   └── MessageEditor.php     # Editor de mensaje personalizado
+│   │       └── Chat/
+│   │           ├── GlobalChat.php        # Sidebar de chat global
+│   │           └── ChatMessage.php       # Componente de mensaje
+│   │
+│   ├── Events/
+│   │   ├── AgentStarted.php
+│   │   ├── AgentCompleted.php
+│   │   ├── AgentFailed.php
+│   │   ├── ProspectApproved.php
+│   │   └── MessageSent.php
+│   │
+│   └── Listeners/
+│       ├── LogAgentExecution.php
+│       ├── NotifyAgentCompletion.php
+│       └── UpdateCampaignStatus.php
+│
+├── config/
+│   ├── agents.php                       # Config de agentes (prompts base, limits)
+│   └── services.php                     # API keys (Gemini, SerpAPI, etc.)
+│
+├── context/                             # Archivos de contexto persistentes
+│   └── .gitkeep                         # Los runs se crean dinámicamente
+│   # Ejemplo de estructura generada:
+│   # context/
+│   #   campaign_001/
+│   #     run_001/
+│   #       01_product_analysis.md
+│   #       02_scout_mission.md
+│   #       03_search_results.json
+│   #       04_selected_leads.json
+│   #       05_execution_log.json
+│
+├── database/
+│   └── migrations/
+│       ├── create_products_table.php
+│       ├── create_product_documents_table.php
+│       ├── create_campaigns_table.php
+│       ├── create_campaign_runs_table.php
+│       ├── create_agent_executions_table.php
+│       ├── create_context_files_table.php
+│       ├── create_prospects_table.php
+│       ├── create_prospect_messages_table.php
+│       ├── create_chat_conversations_table.php
+│       └── create_chat_messages_table.php
+│
+├── resources/
+│   ├── views/
+│   │   ├── layouts/
+│   │   │   └── app.blade.php            # Layout principal con sidebar + chat
+│   │   ├── components/
+│   │   │   ├── sidebar.blade.php
+│   │   │   ├── agent-status-badge.blade.php
+│   │   │   └── context-file-viewer.blade.php
+│   │   ├── dashboard.blade.php
+│   │   ├── products/
+│   │   │   ├── index.blade.php
+│   │   │   └── show.blade.php
+│   │   ├── campaigns/
+│   │   │   ├── index.blade.php
+│   │   │   ├── show.blade.php
+│   │   │   └── wizard.blade.php
+│   │   ├── inbox/
+│   │   │   └── index.blade.php
+│   │   └── livewire/                    # Templates Livewire
+│   │       ├── dashboard/
+│   │       ├── products/
+│   │       ├── campaigns/
+│   │       ├── inbox/
+│   │       └── chat/
+│   ├── css/
+│   │   └── app.css
+│   └── js/
+│       └── app.js
+│
+├── routes/
+│   ├── web.php                          # Rutas de la UI
+│   ├── api.php                          # API endpoints + webhooks
+│   └── channels.php                     # Canales de broadcasting
+│
+├── docs/                                # Documentación del proyecto
+│   ├── architecture.md                  # Este documento de arquitectura
+│   ├── agents-reference.md              # Referencia de agentes y prompts
+│   ├── api-integrations.md              # Guía de configuración de APIs
+│   ├── context-files-spec.md            # Especificación de archivos de contexto
+│   └── deployment.md                    # Guía de deploy WAMP → Hostinger
+│
+├── tests/
+│   ├── Unit/
+│   │   ├── Agents/
+│   │   └── Services/
+│   └── Feature/
+│       ├── CampaignFlowTest.php
+│       └── InboxTest.php
+│
+├── .env.example
+├── composer.json
+└── package.json
+```
+
+---
+
+### Componente 1: Base de Datos (Migraciones)
+
+Schema diseñado para soportar todo el flujo de agentes con trazabilidad completa.
+
+```mermaid
+erDiagram
+    products ||--o{ product_documents : "tiene"
+    products ||--o{ campaigns : "targetea"
+    campaigns ||--o{ campaign_runs : "ejecuta"
+    campaign_runs ||--o{ agent_executions : "contiene"
+    campaign_runs ||--o{ context_files : "genera"
+    campaign_runs ||--o{ prospects : "encuentra"
+    prospects ||--o{ prospect_messages : "recibe"
+    campaigns ||--o{ chat_conversations : "tiene"
+    chat_conversations ||--o{ chat_messages : "contiene"
+
+    products {
+        bigint id PK
+        string name
+        text description
+        text value_proposition
+        text pain_points_summary
+        string status "active/archived"
+        timestamps created_at
+    }
+
+    product_documents {
+        bigint id PK
+        bigint product_id FK
+        string title
+        string file_path
+        string type "manual/brochure/specs"
+        text extracted_text
+        timestamps created_at
+    }
+
+    campaigns {
+        bigint id PK
+        bigint product_id FK
+        string name
+        text objective
+        string target_niche
+        string target_location
+        string status "draft/analyzing/scouting/inbox/executing/completed"
+        json settings
+        timestamps created_at
+    }
+
+    campaign_runs {
+        bigint id PK
+        bigint campaign_id FK
+        int run_number
+        string status "running/paused/completed/failed"
+        json metadata
+        timestamps created_at
+    }
+
+    agent_executions {
+        bigint id PK
+        bigint campaign_run_id FK
+        string agent_type "analyst/scout/executor"
+        string status "pending/running/completed/failed"
+        text input_prompt
+        text output_result
+        int tokens_used
+        int cost_cents
+        float duration_seconds
+        json error_details
+        timestamps created_at
+    }
+
+    context_files {
+        bigint id PK
+        bigint campaign_run_id FK
+        string step "01_analysis/02_mission/03_results/04_leads/05_execution"
+        string file_path
+        string format "md/json"
+        text summary
+        timestamps created_at
+    }
+
+    prospects {
+        bigint id PK
+        bigint campaign_run_id FK
+        string company_name
+        string contact_name
+        string email
+        string phone
+        string website_url
+        string instagram_handle
+        string source "serpapi/manual"
+        json raw_data
+        text ai_analysis
+        string status "new/approved/rejected/contacted/converted"
+        int score
+        timestamps created_at
+    }
+
+    prospect_messages {
+        bigint id PK
+        bigint prospect_id FK
+        string channel "whatsapp/email/instagram"
+        text content
+        text original_ai_content
+        string status "draft/approved/sent/delivered/read/failed"
+        timestamp sent_at
+        json delivery_metadata
+        timestamps created_at
+    }
+
+    chat_conversations {
+        bigint id PK
+        bigint campaign_id FK
+        string title
+        timestamps created_at
+    }
+
+    chat_messages {
+        bigint id PK
+        bigint chat_conversation_id FK
+        string role "user/assistant/system"
+        text content
+        json context_files_used
+        int tokens_used
+        timestamps created_at
+    }
+```
+
+---
+
+### Componente 2: Sistema de Agentes (`app/Agents/`)
+
+#### Diseño del Contrato Base
+
+Cada agente implementa un contrato simple:
+
+```php
+// app/Agents/Contracts/AgentInterface.php
+interface AgentInterface
+{
+    public function execute(CampaignRun $run, array $context): AgentResult;
+    public function getRequiredContextFiles(): array;
+    public function getOutputContextFile(): string;
+}
+```
+
+#### Agente Analista (`AnalystAgent`)
+
+- **Input**: Documentos del producto (manuales, specs)
+- **Proceso**: Envía documentación a Gemini con prompt de análisis
+- **Output**: `01_product_analysis.md` con:
+  - Puntos de dolor detectados
+  - Propuesta de valor
+  - Keywords de búsqueda
+  - Perfil del cliente ideal
+- **Auto-Prompt**: Genera `02_scout_mission.md` con la misión para el Scout
+
+#### Agente Scout (`ScoutAgent`)
+
+- **Input**: Misión generada (aprobada/editada por humano)
+- **Proceso**: 
+  1. Extrae queries de búsqueda de la misión via Gemini
+  2. Ejecuta búsquedas en SerpAPI
+  3. Analiza resultados y sitios web encontrados
+  4. Califica prospectos con scoring AI
+- **Output**: `03_search_results.json` con lista rankeada de prospectos
+
+#### Agente Ejecutor (`ExecutorAgent`)
+
+- **Input**: `04_selected_leads.json` (prospectos aprobados + mensajes editados)
+- **Proceso**: 
+  1. Genera mensajes personalizados via Gemini (si no fueron editados)
+  2. Envía por el canal seleccionado (WhatsApp/Email/IG)
+  3. Registra estado de entrega
+- **Output**: `05_execution_log.json` con resultados de envío
+
+---
+
+### Componente 3: Orquestador (`AgentOrchestrator`)
+
+El orquestador controla el flujo de la pipeline:
+
+```mermaid
+stateDiagram-v2
+    [*] --> Draft: Crear Campaña
+    Draft --> Analyzing: Iniciar Análisis
+    Analyzing --> MissionReview: Analista Completa
+    MissionReview --> Scouting: Humano Aprueba Misión
+    MissionReview --> Analyzing: Humano Modifica y Re-analiza
+    Scouting --> InboxReview: Scout Completa
+    InboxReview --> Executing: Humano Aprueba Prospectos
+    InboxReview --> Scouting: Humano Pide Más Búsqueda
+    Executing --> Completed: Mensajes Enviados
+    Executing --> Failed: Error en Envío
+    Failed --> Executing: Reintentar
+    Completed --> [*]
+```
+
+El orquestador usa **Laravel Jobs** para ejecutar cada agente de forma asíncrona:
+
+```php
+// Flujo: cuando el analista termina, el sistema crea el job para revisión
+// NO lanza automáticamente el Scout — espera aprobación humana
+
+RunAnalystAgentJob::dispatch($campaignRun)
+    ->onQueue('agents')
+    ->then(function () use ($campaignRun) {
+        // Notifica al usuario que la misión está lista para revisión
+        event(new AgentCompleted($campaignRun, 'analyst'));
+    });
+```
+
+---
+
+### Componente 4: Context Manager
+
+```php
+// app/Services/Context/ContextManager.php
+class ContextManager
+{
+    // Genera la ruta: context/campaign_{id}/run_{number}/
+    public function getRunPath(CampaignRun $run): string;
+    
+    // Escribe un archivo de contexto y lo registra en DB
+    public function writeContextFile(CampaignRun $run, string $step, mixed $content): ContextFile;
+    
+    // Lee todos los archivos de un run (para el Chat Global)
+    public function loadFullContext(CampaignRun $run): array;
+    
+    // Actualiza un archivo de contexto (cuando el Chat Global modifica algo)
+    public function updateContextFile(ContextFile $file, mixed $newContent): void;
+}
+```
+
+**Formato de archivos de contexto:**
+
+```
+context/
+  campaign_001/
+    run_001/
+      01_product_analysis.md      ← Markdown legible por humanos
+      02_scout_mission.md         ← Misión editable
+      03_search_results.json      ← Data estructurada
+      04_selected_leads.json      ← Leads aprobados + mensajes
+      05_execution_log.json       ← Log de envíos
+    run_002/                      ← Si se re-ejecuta con cambios
+      ...
+```
+
+---
+
+### Componente 5: Chat Global ("Director de Orquesta")
+
+El chat global es un componente **Livewire** persistente en el sidebar que:
+
+1. **Siempre tiene acceso** a todos los archivos de contexto del run activo
+2. **Usa Gemini 1.5 Pro** con su ventana de contexto grande (1M tokens)
+3. **Puede ejecutar acciones**: reiniciar agentes, modificar misiones, ajustar parámetros
+4. **Mantiene historial** de conversación por campaña
+
+**Flujo técnico del chat:**
+
+```mermaid
+sequenceDiagram
+    actor User
+    participant Chat as Chat Global (Livewire)
+    participant CM as ContextManager
+    participant Gemini as Gemini 1.5 Pro
+    participant Orch as Orchestrator
+
+    User->>Chat: "Los prospectos son muy chicos, buscá más grandes"
+    Chat->>CM: loadFullContext(currentRun)
+    CM-->>Chat: [01_analysis, 02_mission, 03_results, ...]
+    Chat->>Gemini: System prompt + context files + user message
+    Gemini-->>Chat: "Entendido. Modifico la misión para filtrar por tamaño..."
+    Chat->>CM: updateContextFile(02_scout_mission, newMission)
+    Chat->>Orch: restartAgent('scout', currentRun)
+    Orch->>Chat: "Scout reiniciado con nueva misión"
+    Chat-->>User: Muestra respuesta + notificación de reinicio
+```
+
+---
+
+### Componente 6: Interfaz de Usuario
+
+#### Layout Principal
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  NRSMarketing                              🔔  👤 User  │
+├──────────┬──────────────────────────────────┬───────────┤
+│          │                                  │           │
+│ SIDEBAR  │         CONTENIDO MAIN           │   CHAT    │
+│          │                                  │  GLOBAL   │
+│ 📊 Dash  │  [Vista activa según ruta]       │           │
+│ 📦 Prods │                                  │  💬 ...   │
+│ 🎯 Camps │                                  │  💬 ...   │
+│ 📥 Inbox │                                  │  💬 ...   │
+│ 📈 Stats │                                  │           │
+│          │                                  │ [_______] │
+│          │                                  │ [Enviar]  │
+└──────────┴──────────────────────────────────┴───────────┘
+```
+
+#### Pantallas Principales
+
+| Pantalla | Descripción | Componentes Livewire |
+|----------|-------------|---------------------|
+| **Dashboard** | KPIs: campañas activas, prospectos pendientes, mensajes enviados, tasa de conversión | `StatsOverview` |
+| **Productos** | CRUD de productos + upload de documentación | `ProductList`, `ProductForm`, `DocumentUpload` |
+| **Campañas** | Wizard de creación + timeline del run activo | `CampaignWizard`, `RunTimeline`, `MissionEditor` |
+| **Bandeja de Entrada** | Cards de prospectos con acciones: aprobar, rechazar, editar mensaje | `ProspectInbox`, `ProspectCard`, `MessageEditor` |
+| **Chat Global** | Sidebar permanente con streaming de respuestas | `GlobalChat`, `ChatMessage` |
+
+---
+
+### Componente 7: Integraciones Externas
+
+#### Gemini API (`GeminiService`)
+
+```php
+class GeminiService
+{
+    // Llamada estándar para agentes
+    public function generate(string $prompt, array $contextFiles = []): GeminiResponse;
+    
+    // Llamada con streaming para el Chat Global
+    public function streamGenerate(string $prompt, array $contextFiles = []): Generator;
+    
+    // Análisis de documento (para el Analista)
+    public function analyzeDocument(string $documentText, string $analysisPrompt): GeminiResponse;
+}
+```
+
+#### SerpAPI (`SerpApiService`)
+
+```php
+class SerpApiService
+{
+    // Búsqueda en Google
+    public function search(string $query, array $params = []): array;
+    
+    // Búsqueda en Google Maps (para negocios locales)
+    public function searchMaps(string $query, string $location): array;
+    
+    // Búsqueda múltiple con rate limiting
+    public function batchSearch(array $queries, string $location): array;
+}
+```
+
+#### Sistema de Mensajería (`MessengerInterface`)
+
+```php
+interface MessengerInterface
+{
+    public function send(Prospect $prospect, string $message): DeliveryResult;
+    public function getDeliveryStatus(string $messageId): string;
+    public function validateRecipient(string $identifier): bool;
+}
+```
+
+---
+
+## Configuración de Entorno
+
+### `.env` (variables clave)
+
+```env
+# AI
+GEMINI_API_KEY=
+GEMINI_MODEL=gemini-1.5-pro
+
+# Search
+SERPAPI_KEY=
+
+# WhatsApp
+WHATSAPP_API_TOKEN=
+WHATSAPP_PHONE_ID=
+WHATSAPP_VERIFY_TOKEN=
+
+# Instagram
+INSTAGRAM_ACCESS_TOKEN=
+
+# Queue (usar database para WAMP, redis para producción)
+QUEUE_CONNECTION=database
+
+# Context
+CONTEXT_FILES_PATH=context
+```
+
+### `config/agents.php`
+
+```php
+return [
+    'analyst' => [
+        'model' => env('GEMINI_MODEL', 'gemini-1.5-pro'),
+        'max_tokens' => 8192,
+        'system_prompt' => 'Eres un analista de marketing B2B...',
+    ],
+    'scout' => [
+        'model' => env('GEMINI_MODEL', 'gemini-1.5-pro'),
+        'max_searches' => 10,
+        'max_results_per_search' => 20,
+    ],
+    'executor' => [
+        'batch_size' => 10,
+        'delay_between_messages' => 30, // segundos
+        'channels' => ['whatsapp', 'email', 'instagram'],
+    ],
+    'chat' => [
+        'model' => env('GEMINI_MODEL', 'gemini-1.5-pro'),
+        'max_context_tokens' => 500000,
+    ],
+];
+```
+
+---
+
+## Plan de Implementación por Fases
+
+### Fase 1: Fundación (Semana 1-2)
+- Instalar Laravel 11 en WAMP
+- Configurar base de datos y migraciones
+- Implementar layout principal con sidebar + chat placeholder
+- CRUD de Productos con upload de documentos
+- Componente ContextManager básico
+
+### Fase 2: Agente Analista (Semana 3)
+- Integración con Gemini API
+- Implementar AnalystAgent
+- UI de análisis de producto
+- Generación de archivos 01 y 02
+
+### Fase 3: Agente Scout + Bandeja (Semana 4-5)
+- Integración con SerpAPI
+- Implementar ScoutAgent
+- MissionEditor (textarea editable)
+- Bandeja de Entrada con ProspectCards
+- Acciones de aprobar/rechazar/editar
+
+### Fase 4: Chat Global (Semana 6)
+- Componente Livewire de chat con streaming
+- Integración con ContextManager
+- Capacidad de reiniciar agentes desde chat
+- Historial de conversaciones
+
+### Fase 5: Agente Ejecutor (Semana 7-8)
+- Integración WhatsApp Cloud API
+- Integración SMTP para emails
+- Integración Instagram Graph API (si aplica)
+- UI de monitoreo de envíos
+
+### Fase 6: Polish + Deploy (Semana 9-10)
+- Dashboard con métricas
+- Tests automatizados
+- Migración a Hostinger Cloud
+- Documentación final
+
+---
+
+## Decisiones Resueltas
+
+Todas las preguntas abiertas fueron resueltas (ver sección "Decisiones Confirmadas" arriba).
+
+---
+
+## Verification Plan
+
+### Automated Tests
+```bash
+# Tests unitarios de agentes (mocks de APIs)
+php artisan test --filter=AgentTest
+
+# Tests de integración del flujo completo
+php artisan test --filter=CampaignFlowTest
+
+# Verificar migraciones
+php artisan migrate:fresh --seed
+```
+
+### Manual Verification
+1. **Flujo completo**: Crear producto → Ejecutar analista → Revisar misión → Ejecutar scout → Aprobar prospectos → Enviar mensajes (modo test)
+2. **Chat Global**: Verificar que el chat puede leer contexto y reiniciar agentes
+3. **Context Files**: Verificar que los archivos se generan correctamente en disco
+4. **UI Responsiva**: Verificar en desktop y tablet
+5. **Deploy**: Verificar funcionamiento en Hostinger Cloud con queue worker activo

@@ -1,0 +1,73 @@
+{
+    "queries_used": [
+        "\"escuela de fútbol\" (Mendiolaza OR \"Villa Allende\" OR Unquillo)",
+        "site:instagram.com \"escuela de fútbol\" (\"Villa Allende\" OR"
+    ],
+    "search_requests": [
+        {
+            "query": "\"escuela de fútbol\" (Mendiolaza OR \"Villa Allende\" OR Unquillo)",
+            "params": {
+                "engine": "google",
+                "location": "Mendiolaza,cordoba, argentina",
+                "hl": "es",
+                "gl": "ar",
+                "num": 8
+            }
+        },
+        {
+            "query": "site:instagram.com \"escuela de fútbol\" (\"Villa Allende\" OR",
+            "params": {
+                "engine": "google",
+                "location": "Mendiolaza,cordoba, argentina",
+                "hl": "es",
+                "gl": "ar",
+                "num": 8
+            }
+        }
+    ],
+    "total_raw_results": 4,
+    "total_scored": 4,
+    "total_saved": 4,
+    "results": [
+        {
+            "title": "Escuela de fútbol Atlético Villa Allende 💙⚽️ (@ ...",
+            "company_name": "Escuela de fútbol Atlético Villa Allende",
+            "url": "https:\/\/www.instagram.com\/atletico_escueladefutbol\/",
+            "score": 95,
+            "analysis": "Nicho principal (fútbol) en ubicación objetivo (Villa Allende) con inscripciones abiertas, ideal para ofrecer el Portal de Padres.",
+            "contact_name": null,
+            "email": null,
+            "phone": null
+        },
+        {
+            "title": "Talleres Mendiolaza escuelita Integral de Fútbol.",
+            "company_name": "Talleres Mendiolaza",
+            "url": "https:\/\/www.facebook.com\/p\/Talleres-Mendiolaza-escuelita-Integral-de-F%C3%BAtbol-100039448550247\/",
+            "score": 100,
+            "analysis": "Ubicación premium (Mendiolaza) y nicho prioritario; el uso de teléfono directo para inscripciones indica gestión manual.",
+            "contact_name": null,
+            "email": null,
+            "phone": "3512253815"
+        },
+        {
+            "title": "Unquillo: Se realiza el primer Torneo infantil de Fútbol | Radio ...",
+            "company_name": "Escuela de fútbol Los Amigos",
+            "url": "https:\/\/somosradionativa.wordpress.com\/2025\/07\/11\/unquillo-se-realiza-el-primer-torneo-infantil-de-futbol\/",
+            "score": 75,
+            "analysis": "Identifica una institución en Unquillo y un referente (Raúl Maldonado), aunque es una noticia y no un perfil directo.",
+            "contact_name": "Raúl Maldonado",
+            "email": null,
+            "phone": null
+        },
+        {
+            "title": "Seis jugadores de Belgrano visitaron una escuela de fútbol en Villa ...",
+            "company_name": "Escuela de fútbol Atlético Celeste",
+            "url": "https:\/\/elmilenio.info\/2021\/12\/03\/seis-jugadores-de-belgrano-visitaron-una-escuela-de-futbol-en-villa-allende\/",
+            "score": 65,
+            "analysis": "Identifica una escuela en Villa Allende, pero la noticia es antigua (2021), lo que requiere verificar si aún operan igual.",
+            "contact_name": null,
+            "email": null,
+            "phone": null
+        }
+    ]
+}

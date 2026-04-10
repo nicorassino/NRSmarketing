@@ -1,0 +1,35 @@
+2026/04/09-17:21:46.839 fdc Reusing MANIFEST C:\wamp64\www\NRSmarketing-1\whatsapp-bridge\.wwebjs_auth\session-nrsmarketing\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2026/04/09-17:21:46.840 fdc Recovering log #548
+2026/04/09-17:21:46.882 fdc Reusing old log C:\wamp64\www\NRSmarketing-1\whatsapp-bridge\.wwebjs_auth\session-nrsmarketing\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000548.log 
+2026/04/09-17:21:51.642 5294 Level-0 table #571: started
+2026/04/09-17:21:51.668 5294 Level-0 table #571: 1273752 bytes OK
+2026/04/09-17:21:51.669 5294 Delete type=0 #548
+2026/04/09-17:21:51.761 5294 Compacting 1@0 + 0@1 files
+2026/04/09-17:21:51.783 5294 Generated table #572@0: 23566 keys, 481888 bytes
+2026/04/09-17:21:51.789 5294 Generated table #573@0: 962 keys, 110470 bytes
+2026/04/09-17:21:51.789 5294 Compacted 1@0 + 0@1 files => 592358 bytes
+2026/04/09-17:21:51.791 5294 compacted to: files[ 0 2 17 0 0 0 0 ]
+2026/04/09-17:21:51.791 5294 Delete type=2 #571
+2026/04/09-17:21:52.048 5294 Compacting 1@1 + 7@2 files
+2026/04/09-17:21:52.132 5294 Generated table #574@1: 2312 keys, 2154042 bytes
+2026/04/09-17:21:52.162 5294 Generated table #575@1: 2647 keys, 2152729 bytes
+2026/04/09-17:21:52.211 5294 Generated table #576@1: 18282 keys, 2188553 bytes
+2026/04/09-17:21:52.287 5294 Generated table #577@1: 25005 keys, 2278114 bytes
+2026/04/09-17:21:52.362 5294 Generated table #578@1: 30846 keys, 2261846 bytes
+2026/04/09-17:21:52.397 5294 Generated table #579@1: 13705 keys, 1509963 bytes
+2026/04/09-17:21:52.397 5294 Compacted 1@1 + 7@2 files => 12545247 bytes
+2026/04/09-17:21:52.398 5294 compacted to: files[ 0 1 16 0 0 0 0 ]
+2026/04/09-17:21:52.475 5294 Compacting 1@1 + 10@2 files
+2026/04/09-17:21:52.514 5294 Generated table #580@1: 8837 keys, 2130894 bytes
+2026/04/09-17:21:52.576 5294 Generated table #581@1: 65850 keys, 2205082 bytes
+2026/04/09-17:21:52.666 5294 Generated table #582@1: 99887 keys, 2250403 bytes
+2026/04/09-17:21:52.745 5294 Generated table #583@1: 99100 keys, 2249931 bytes
+2026/04/09-17:21:52.820 5294 Generated table #584@1: 99670 keys, 2249465 bytes
+2026/04/09-17:21:52.882 5294 Generated table #585@1: 58623 keys, 2225628 bytes
+2026/04/09-17:21:52.920 5294 Generated table #586@1: 12065 keys, 2163940 bytes
+2026/04/09-17:21:52.948 5294 Generated table #587@1: 2252 keys, 2150267 bytes
+2026/04/09-17:21:52.975 5294 Generated table #588@1: 2164 keys, 2152160 bytes
+2026/04/09-17:21:53.002 5294 Generated table #589@1: 2280 keys, 2150239 bytes
+2026/04/09-17:21:53.004 5294 Generated table #590@1: 136 keys, 134601 bytes
+2026/04/09-17:21:53.004 5294 Compacted 1@1 + 10@2 files => 22062610 bytes
+2026/04/09-17:21:53.005 5294 compacted to: files[ 0 0 17 0 0 0 0 ]

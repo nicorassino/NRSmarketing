@@ -1,0 +1,26 @@
+{
+    "executed_at": "2026-04-09T20:26:23.039050Z",
+    "total_prospects": 1,
+    "sent": 1,
+    "failed": 0,
+    "results": [
+        {
+            "prospect": "Escuela integral de fútbol Talleres de Mendiolaza",
+            "channel": "whatsapp",
+            "status": "sent",
+            "details": {
+                "success": true,
+                "channel": "whatsapp",
+                "bridge_message_id": "true_275874456842349@lid_3EB09736CD4415F7C45507",
+                "response": {
+                    "ok": true,
+                    "message_id": "true_275874456842349@lid_3EB09736CD4415F7C45507",
+                    "external_id": "121",
+                    "to": "543512253815",
+                    "chat_id": "275874456842349@lid",
+                    "status": "ready"
+                }
+            }
+        }
+    ]
+}

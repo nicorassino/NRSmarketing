@@ -1,0 +1,18 @@
+[Unit]
+Description=NRSMarketing WhatsApp Bridge
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/var/www/nrsmarketing/whatsapp-bridge
+ExecStart=/usr/bin/npm start
+Restart=always
+RestartSec=5
+User=www-data
+Environment=NODE_ENV=production
+Environment=WHATSAPP_BRIDGE_TOKEN=change_me
+Environment=WHATSAPP_BRIDGE_PORT=3000
+Environment=WHATSAPP_SESSION_NAME=nrsmarketing
+
+[Install]
+WantedBy=multi-user.target

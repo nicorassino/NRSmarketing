@@ -35,4 +35,10 @@ return [
         ],
     ],
 
+    'whatsapp_bridge' => [
+        'url' => env('WHATSAPP_BRIDGE_URL'),
+        'token' => env('WHATSAPP_BRIDGE_TOKEN'),
+        'timeout' => env('WHATSAPP_BRIDGE_TIMEOUT', 15),
+    ],
+
 ];

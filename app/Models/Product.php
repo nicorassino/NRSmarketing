@@ -9,6 +9,7 @@ class Product extends Model
 {
     protected $fillable = [
         'name',
+        'brand_name',
         'description',
         'value_proposition',
         'pain_points_summary',
@@ -30,6 +31,16 @@ class Product extends Model
     public function campaigns(): HasMany
     {
         return $this->hasMany(Campaign::class);
+    }
+
+    public function chatConversations(): HasMany
+    {
+        return $this->hasMany(ChatConversation::class);
+    }
+
+    public function messageTemplates(): HasMany
+    {
+        return $this->hasMany(ProductMessageTemplate::class);
     }
 
     public function scopeActive($query)

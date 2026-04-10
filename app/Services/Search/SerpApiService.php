@@ -29,8 +29,8 @@ class SerpApiService
             'engine' => 'google',
             'q' => $query,
             'api_key' => $this->apiKey,
-            'hl' => 'es',
-            'gl' => 'ar',
+            'hl' => $params['hl'] ?? 'es',
+            'gl' => $params['gl'] ?? 'ar',
             'num' => $params['num'] ?? 10,
         ];
 
@@ -67,11 +67,13 @@ class SerpApiService
         }
 
         try {
+            $coords = $this->getCoordinates($location);
+            $mapsQuery = trim($query . ' ' . $location);
             $response = Http::timeout(30)->get($this->baseUrl, [
                 'engine' => 'google_maps',
-                'q' => $query,
+                'q' => $mapsQuery,
                 'api_key' => $this->apiKey,
-                'll' => $this->getCoordinates($location),
+                'll' => $coords,
                 'hl' => 'es',
             ]);
 
@@ -122,6 +124,7 @@ class SerpApiService
                 'url' => $item['website'] ?? '',
                 'phone' => $item['phone'] ?? '',
                 'address' => $item['address'] ?? '',
+                'instagram' => $this->extractInstagramHandle($item['website'] ?? ''),
                 'rating' => $item['rating'] ?? null,
                 'reviews' => $item['reviews'] ?? 0,
                 'type' => $item['type'] ?? '',
@@ -145,5 +148,14 @@ class SerpApiService
         ];
 
         return $coords[$location] ?? '@-31.4201,-64.1888,14z';
+    }
+
+    private function extractInstagramHandle(string $website): ?string
+    {
+        if (preg_match('/instagram\.com\/([A-Za-z0-9._]+)/i', $website, $matches)) {
+            return $matches[1];
+        }
+
+        return null;
     }
 }

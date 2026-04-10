@@ -1,3 +1,44 @@
+## NRSMarketing
+
+Plataforma de prospeccion asistida por agentes IA sobre Laravel + Livewire.
+
+### Cambios aplicados en esta ejecucion
+
+- WhatsApp ahora usa arquitectura de **bridge interno** (`app/Services/Messaging/WhatsAppBridgeMessenger.php`).
+- Se agrego el modulo `whatsapp-bridge/` con servidor Node de referencia (modo `stub`).
+- Chat global preparado para ser **por producto/proyecto** con migracion `add_product_id_to_chat_conversations`.
+- Componente de logo actualizado para usar `public/images/logo-nr.png` cuando exista.
+
+### Setup rapido (bridge WhatsApp)
+
+1. Configurar en Laravel:
+   - `WHATSAPP_BRIDGE_URL=http://127.0.0.1:3000`
+   - `WHATSAPP_BRIDGE_TOKEN=...`
+2. Levantar bridge:
+   - `cd whatsapp-bridge`
+   - `npm install`
+   - `npm start`
+3. En la app ir a `WhatsApp` e iniciar/reconectar sesion para escanear QR.
+
+### Nota de logo
+
+El componente busca el archivo `public/images/logo-nr.png`.  
+Si queres usar `logoNR.png` de la raiz, copialo a esa ruta.
+
+### Produccion
+
+- Guia de deploy: `docs/deployment.md`
+- Endurecimiento: `docs/production-hardening.md`
+- Integraciones: `docs/api-integrations.md`
+
+### Localhost WAMP (recomendado para tu caso actual)
+
+- Guia rapida: `docs/localhost-wamp.md`
+- Setup inicial: `.\scripts\setup-local.ps1`
+- Arranque diario: `.\scripts\start-local.ps1`
+
+---
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">

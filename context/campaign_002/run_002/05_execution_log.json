@@ -1,0 +1,26 @@
+{
+    "executed_at": "2026-04-09T17:37:19.650433Z",
+    "total_prospects": 3,
+    "sent": 0,
+    "failed": 0,
+    "results": [
+        {
+            "prospect": "Escuela de fútbol Atlético Villa Allende",
+            "channel": "instagram",
+            "status": "skipped",
+            "reason": "No hay mensaje aprobado para este canal"
+        },
+        {
+            "prospect": "Talleres Mendiolaza",
+            "channel": "whatsapp",
+            "status": "skipped",
+            "reason": "No hay mensaje aprobado para este canal"
+        },
+        {
+            "prospect": "Escuela de fútbol Los Amigos",
+            "channel": "whatsapp",
+            "status": "skipped",
+            "reason": "No hay mensaje aprobado para este canal"
+        }
+    ]
+}

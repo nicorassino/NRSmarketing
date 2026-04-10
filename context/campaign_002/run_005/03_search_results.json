@@ -1,0 +1,492 @@
+{
+    "queries_used": [
+        "\"escuela de fútbol\" Mendiolaza OR \"Villa Allende\" OR Unquillo",
+        "site:instagram.com \"escuela de fútbol\" \"Villa Allende\" \"inscripciones"
+    ],
+    "search_requests": [
+        {
+            "query": "\"escuela de fútbol\" Mendiolaza OR \"Villa Allende\" OR Unquillo",
+            "params": {
+                "engine": "google",
+                "location": "Mendiolaza,córdoba, argentina",
+                "hl": "es",
+                "gl": "ar",
+                "num": 7
+            }
+        },
+        {
+            "query": "\"escuela de fútbol\" Mendiolaza OR \"Villa Allende\" OR Unquillo",
+            "params": {
+                "engine": "google_maps",
+                "location": "Mendiolaza,córdoba, argentina",
+                "hl": "es"
+            }
+        },
+        {
+            "query": "site:instagram.com \"escuela de fútbol\" \"Villa Allende\" \"inscripciones",
+            "params": {
+                "engine": "google",
+                "location": "Mendiolaza,córdoba, argentina",
+                "hl": "es",
+                "gl": "ar",
+                "num": 7
+            }
+        },
+        {
+            "query": "site:instagram.com \"escuela de fútbol\" \"Villa Allende\" \"inscripciones",
+            "params": {
+                "engine": "google_maps",
+                "location": "Mendiolaza,córdoba, argentina",
+                "hl": "es"
+            }
+        }
+    ],
+    "total_raw_results": 32,
+    "total_after_merge": 14,
+    "total_scored": 14,
+    "total_saved": 14,
+    "merged_results": [
+        {
+            "title": "Escuela de fútbol Atlético Villa Allende 💙⚽️ (@ ...",
+            "url": "https:\/\/www.instagram.com\/atletico_escueladefutbol\/",
+            "snippet": "Photo by Escuela de fútbol Atlético Villa Allende ⚽️ on March 10, 2026. Todavía No Te sumaste!? #Estás a tiempo #No te quedes Afuera #inscripciones Abiertas # ...",
+            "position": 1,
+            "source": "google_organic",
+            "source_list": [
+                "google_organic",
+                "google_maps"
+            ],
+            "contact_richness": 6,
+            "phone": "+54 351 875-5555",
+            "instagram": "eleniasports",
+            "address": "Av. Colón 5852, X5806 Córdoba, Argentina"
+        },
+        {
+            "title": "EL CAMPUS Fútbol Femenino",
+            "url": "https:\/\/instagram.com\/elcampus.futbolfemenino?utm_medium=copy_link",
+            "phone": "+54 9 351 738-7010",
+            "address": "Ramón Cárcano 75, 5000 Córdoba, Argentina",
+            "instagram": "elcampus.futbolfemenino",
+            "rating": 5,
+            "reviews": 1,
+            "type": "Escuela deportiva",
+            "source": "google_maps",
+            "source_list": [
+                "google_maps"
+            ],
+            "contact_richness": 6
+        },
+        {
+            "title": "Talleres Mendiolaza escuelita Integral de Fútbol.",
+            "url": "https:\/\/www.facebook.com\/p\/Talleres-Mendiolaza-escuelita-Integral-de-F%C3%BAtbol-100039448550247\/",
+            "snippet": "Escuela de fútbol Talleres Mendiolaza ⚽️ Inscripciones abiertas - 3512253815 Complejo deportivo \"Tiempo extra\" - Av. Malvinas Argentinas - Mendiolaza.",
+            "position": 2,
+            "source": "google_organic",
+            "source_list": [
+                "google_organic",
+                "google_maps"
+            ],
+            "contact_richness": 4,
+            "phone": "+54 351 689-3236",
+            "address": "Blvd. Bulnes 4999-4949, X5012 Córdoba, Argentina"
+        },
+        {
+            "title": "Escuela integral de fútbol Talleres de Mendiolaza",
+            "url": "",
+            "phone": "+54 351 225-3815",
+            "address": "Av. Malvinas Argentinas 5, X5107 Mendiolaza, Córdoba, Argentina",
+            "instagram": null,
+            "rating": 5,
+            "reviews": 2,
+            "type": "Escuela deportiva",
+            "source": "google_maps",
+            "source_list": [
+                "google_maps"
+            ],
+            "contact_richness": 4
+        },
+        {
+            "title": "Club Universitario de Córdoba [Sede Central]",
+            "url": "http:\/\/clubuniversitariocba.com\/",
+            "phone": "+54 351 480-2278",
+            "address": "Hipólito Vieytes 550, X5000 Córdoba, Argentina",
+            "instagram": null,
+            "rating": 4.3,
+            "reviews": 3275,
+            "type": "Centro deportivo",
+            "source": "google_maps",
+            "source_list": [
+                "google_maps"
+            ],
+            "contact_richness": 4
+        },
+        {
+            "title": "Escuela Oficial de Fútbol Talleres Ciudad Universitaria",
+            "url": "",
+            "phone": "+54 351 595-7909",
+            "address": "Martín de Fonseca 429, X5000 Córdoba, Argentina",
+            "instagram": null,
+            "rating": 4.1,
+            "reviews": 20,
+            "type": "Escuela deportiva",
+            "source": "google_maps",
+            "source_list": [
+                "google_maps"
+            ],
+            "contact_richness": 4
+        },
+        {
+            "title": "Escuela de Fútbol Alto Alberdi",
+            "url": "",
+            "phone": "+54 351 531-8622",
+            "address": "Maestro Vidal 975, X5000 Córdoba, Argentina",
+            "instagram": null,
+            "rating": 4.5,
+            "reviews": 2,
+            "type": "Campo de fútbol",
+            "source": "google_maps",
+            "source_list": [
+                "google_maps"
+            ],
+            "contact_richness": 4
+        },
+        {
+            "title": "Nuestras Raíces Campo Social",
+            "url": "http:\/\/www.nuestrasraicescamposocial.com\/",
+            "phone": "+54 9 351 636-8048",
+            "address": "31°27'40.9\"S 64°13'59.2\"W, Argentina",
+            "instagram": null,
+            "rating": 4.6,
+            "reviews": 673,
+            "type": "Club",
+            "source": "google_maps",
+            "source_list": [
+                "google_maps"
+            ],
+            "contact_richness": 4
+        },
+        {
+            "title": "Legión Fútbol",
+            "url": "https:\/\/www.legionfutbol.com\/",
+            "phone": "+54 351 262-9885",
+            "address": "Av. del Piamonte 1996 X5016DQA, X5016 Córdoba, Argentina",
+            "instagram": null,
+            "rating": 5,
+            "reviews": 16,
+            "type": "Club deportivo",
+            "source": "google_maps",
+            "source_list": [
+                "google_maps"
+            ],
+            "contact_richness": 4
+        },
+        {
+            "title": "Club Atlético Talleres (C.A.T.)",
+            "url": "https:\/\/www.clubtalleres.com.ar\/",
+            "phone": "+54 9 351 226-8833",
+            "address": "Avendaño y Valdivia, X5000 Córdoba, Argentina",
+            "instagram": null,
+            "rating": 4.7,
+            "reviews": 882,
+            "type": "Club de fútbol",
+            "source": "google_maps",
+            "source_list": [
+                "google_maps"
+            ],
+            "contact_richness": 4
+        },
+        {
+            "title": "Escuela de fútbol",
+            "url": "",
+            "phone": "",
+            "address": "Monseñor Miguel de Andrea 42 98, X5003GFB X5003GFB, Córdoba, Argentina",
+            "instagram": null,
+            "rating": 5,
+            "reviews": 2,
+            "type": "Club deportivo",
+            "source": "google_maps",
+            "source_list": [
+                "google_maps"
+            ],
+            "contact_richness": 1
+        },
+        {
+            "title": "Unquillo: Se realiza el primer Torneo infantil de Fútbol | Radio ...",
+            "url": "https:\/\/somosradionativa.wordpress.com\/2025\/07\/11\/unquillo-se-realiza-el-primer-torneo-infantil-de-futbol\/",
+            "snippet": "... fútbol de Unquillo que finalizará el próximo sábado 19 de Julio. Raúl Maldonado uno de los profes que lleva adelante la escuela de fútbol los amigos de…",
+            "position": 4,
+            "source": "google_organic",
+            "source_list": [
+                "google_organic"
+            ],
+            "contact_richness": 0
+        },
+        {
+            "title": "Desalojo al fútbol infantil en Mendiolaza - Información de ...",
+            "url": "https:\/\/demendiolaza.com.ar\/desalojo-al-futbol-infantil-en-mendiolaza\/",
+            "snippet": "La escuela de futbol infantojuvenil fue ... “Hoy tenemos chicos que vienen desde La Quebrada, de Villa Allende, de Unquillo. ... Mendiolaza. Desalojo al fútbol ...",
+            "position": 5,
+            "source": "google_organic",
+            "source_list": [
+                "google_organic"
+            ],
+            "contact_richness": 0
+        },
+        {
+            "title": "Seis jugadores de Belgrano visitaron una escuela de fútbol en Villa ...",
+            "url": "https:\/\/elmilenio.info\/2021\/12\/03\/seis-jugadores-de-belgrano-visitaron-una-escuela-de-futbol-en-villa-allende\/",
+            "snippet": "En el día de ayer, jugadores y jugadoras de Belgrano realizaron una acción social en la escuela de fútbol “Atlético Celeste” de Villa Allende.",
+            "position": 6,
+            "source": "google_organic",
+            "source_list": [
+                "google_organic"
+            ],
+            "contact_richness": 0
+        }
+    ],
+    "results": [
+        {
+            "title": "Escuela de fútbol Atlético Villa Allende 💙⚽️ (@ ...",
+            "url": "https:\/\/www.instagram.com\/atletico_escueladefutbol\/",
+            "snippet": "Photo by Escuela de fútbol Atlético Villa Allende ⚽️ on March 10, 2026. Todavía No Te sumaste!? #Estás a tiempo #No te quedes Afuera #inscripciones Abiertas # ...",
+            "position": 1,
+            "source": "google_organic",
+            "source_list": [
+                "google_organic",
+                "google_maps"
+            ],
+            "contact_richness": 6,
+            "phone": "+54 351 875-5555",
+            "instagram": "eleniasports",
+            "address": "Av. Colón 5852, X5806 Córdoba, Argentina",
+            "company_name": "Atlético Villa Allende",
+            "score": 90,
+            "analysis": "Ubicación ideal en Villa Allende, escuela de fútbol activa con inscripciones abiertas y gestión manual por redes.",
+            "contact_name": null,
+            "email": null
+        },
+        {
+            "title": "EL CAMPUS Fútbol Femenino",
+            "url": "https:\/\/instagram.com\/elcampus.futbolfemenino?utm_medium=copy_link",
+            "phone": "+54 9 351 738-7010",
+            "address": "Ramón Cárcano 75, 5000 Córdoba, Argentina",
+            "instagram": "elcampus.futbolfemenino",
+            "rating": 5,
+            "reviews": 1,
+            "type": "Escuela deportiva",
+            "source": "google_maps",
+            "source_list": [
+                "google_maps"
+            ],
+            "contact_richness": 6,
+            "company_name": "EL CAMPUS Fútbol Femenino",
+            "score": 20,
+            "analysis": "Fuera de la zona geográfica objetivo (se encuentra en Córdoba Capital).",
+            "contact_name": null,
+            "email": null
+        },
+        {
+            "title": "Talleres Mendiolaza escuelita Integral de Fútbol.",
+            "url": "https:\/\/www.facebook.com\/p\/Talleres-Mendiolaza-escuelita-Integral-de-F%C3%BAtbol-100039448550247\/",
+            "snippet": "Escuela de fútbol Talleres Mendiolaza ⚽️ Inscripciones abiertas - 3512253815 Complejo deportivo \"Tiempo extra\" - Av. Malvinas Argentinas - Mendiolaza.",
+            "position": 2,
+            "source": "google_organic",
+            "source_list": [
+                "google_organic",
+                "google_maps"
+            ],
+            "contact_richness": 4,
+            "phone": "+54 351 689-3236",
+            "address": "Blvd. Bulnes 4999-4949, X5012 Córdoba, Argentina",
+            "company_name": "Talleres Mendiolaza",
+            "score": 95,
+            "analysis": "Cliente ideal: Escuela en Mendiolaza, múltiples categorías y gestión de inscripciones vía WhatsApp.",
+            "contact_name": null,
+            "email": null
+        },
+        {
+            "title": "Escuela integral de fútbol Talleres de Mendiolaza",
+            "company_name": "Talleres Mendiolaza",
+            "url": "",
+            "score": 95,
+            "analysis": "Confirmación de ubicación en Mendiolaza y contacto directo para gestión deportiva local.",
+            "contact_name": null,
+            "email": null,
+            "phone": "+54 351 225-3815",
+            "contact_richness": 3
+        },
+        {
+            "title": "Club Universitario de Córdoba [Sede Central]",
+            "url": "http:\/\/clubuniversitariocba.com\/",
+            "phone": "+54 351 480-2278",
+            "address": "Hipólito Vieytes 550, X5000 Córdoba, Argentina",
+            "instagram": null,
+            "rating": 4.3,
+            "reviews": 3275,
+            "type": "Centro deportivo",
+            "source": "google_maps",
+            "source_list": [
+                "google_maps"
+            ],
+            "contact_richness": 4,
+            "company_name": "Club Universitario de Córdoba",
+            "score": 10,
+            "analysis": "Institución grande en Córdoba Capital, fuera de la zona y probablemente con sistema propio.",
+            "contact_name": null,
+            "email": null
+        },
+        {
+            "title": "Escuela Oficial de Fútbol Talleres Ciudad Universitaria",
+            "company_name": "Talleres Ciudad Universitaria",
+            "url": "",
+            "score": 10,
+            "analysis": "Ubicada en Córdoba Capital, fuera del ámbito geográfico de Sierras Chicas.",
+            "contact_name": null,
+            "email": null,
+            "phone": "+54 351 595-7909",
+            "contact_richness": 3
+        },
+        {
+            "title": "Escuela de Fútbol Alto Alberdi",
+            "url": "",
+            "phone": "+54 351 531-8622",
+            "address": "Maestro Vidal 975, X5000 Córdoba, Argentina",
+            "instagram": null,
+            "rating": 4.5,
+            "reviews": 2,
+            "type": "Campo de fútbol",
+            "source": "google_maps",
+            "source_list": [
+                "google_maps"
+            ],
+            "contact_richness": 4,
+            "company_name": "Escuela de Fútbol Alto Alberdi",
+            "score": 10,
+            "analysis": "Ubicada en Córdoba Capital, no cumple con el criterio de cercanía.",
+            "contact_name": null,
+            "email": null
+        },
+        {
+            "title": "Nuestras Raíces Campo Social",
+            "url": "http:\/\/www.nuestrasraicescamposocial.com\/",
+            "phone": "+54 9 351 636-8048",
+            "address": "31°27'40.9\"S 64°13'59.2\"W, Argentina",
+            "instagram": null,
+            "rating": 4.6,
+            "reviews": 673,
+            "type": "Club",
+            "source": "google_maps",
+            "source_list": [
+                "google_maps"
+            ],
+            "contact_richness": 4,
+            "company_name": "Nuestras Raíces",
+            "score": 15,
+            "analysis": "Club social en Córdoba Capital, fuera de la zona de Mendiolaza\/Villa Allende\/Unquillo.",
+            "contact_name": null,
+            "email": null
+        },
+        {
+            "title": "Legión Fútbol",
+            "url": "https:\/\/www.legionfutbol.com\/",
+            "phone": "+54 351 262-9885",
+            "address": "Av. del Piamonte 1996 X5016DQA, X5016 Córdoba, Argentina",
+            "instagram": null,
+            "rating": 5,
+            "reviews": 16,
+            "type": "Club deportivo",
+            "source": "google_maps",
+            "source_list": [
+                "google_maps"
+            ],
+            "contact_richness": 4,
+            "company_name": "Legión Fútbol",
+            "score": 15,
+            "analysis": "Complejo deportivo en Córdoba Capital, fuera del radio de acción definido.",
+            "contact_name": null,
+            "email": null
+        },
+        {
+            "title": "Club Atlético Talleres (C.A.T.)",
+            "url": "https:\/\/www.clubtalleres.com.ar\/",
+            "phone": "+54 9 351 226-8833",
+            "address": "Avendaño y Valdivia, X5000 Córdoba, Argentina",
+            "instagram": null,
+            "rating": 4.7,
+            "reviews": 882,
+            "type": "Club de fútbol",
+            "source": "google_maps",
+            "source_list": [
+                "google_maps"
+            ],
+            "contact_richness": 4,
+            "company_name": "Club Atlético Talleres",
+            "score": 5,
+            "analysis": "Club profesional con sistemas propios y fuera de la zona específica de Sierras Chicas.",
+            "contact_name": null,
+            "email": null
+        },
+        {
+            "title": "Escuela de fútbol",
+            "company_name": "Escuela de fútbol (Genérica)",
+            "url": "",
+            "score": 5,
+            "analysis": "Ubicación en Córdoba Capital y falta de información relevante.",
+            "contact_name": null,
+            "email": null,
+            "phone": null,
+            "contact_richness": 0
+        },
+        {
+            "title": "Unquillo: Se realiza el primer Torneo infantil de Fútbol | Radio ...",
+            "url": "https:\/\/somosradionativa.wordpress.com\/2025\/07\/11\/unquillo-se-realiza-el-primer-torneo-infantil-de-futbol\/",
+            "snippet": "... fútbol de Unquillo que finalizará el próximo sábado 19 de Julio. Raúl Maldonado uno de los profes que lleva adelante la escuela de fútbol los amigos de…",
+            "position": 4,
+            "source": "google_organic",
+            "source_list": [
+                "google_organic"
+            ],
+            "contact_richness": 0,
+            "company_name": "Escuela de fútbol Los Amigos",
+            "score": 80,
+            "analysis": "Identifica una escuela en Unquillo y un contacto clave (Raúl Maldonado) para prospección.",
+            "contact_name": "Raúl Maldonado",
+            "email": null,
+            "phone": null
+        },
+        {
+            "title": "Desalojo al fútbol infantil en Mendiolaza - Información de ...",
+            "url": "https:\/\/demendiolaza.com.ar\/desalojo-al-futbol-infantil-en-mendiolaza\/",
+            "snippet": "La escuela de futbol infantojuvenil fue ... “Hoy tenemos chicos que vienen desde La Quebrada, de Villa Allende, de Unquillo. ... Mendiolaza. Desalojo al fútbol ...",
+            "position": 5,
+            "source": "google_organic",
+            "source_list": [
+                "google_organic"
+            ],
+            "contact_richness": 0,
+            "company_name": "Escuela de fútbol infantojuvenil Mendiolaza",
+            "score": 40,
+            "analysis": "Menciona una escuela en Mendiolaza, pero el contexto de desalojo sugiere inestabilidad institucional.",
+            "contact_name": null,
+            "email": null,
+            "phone": null
+        },
+        {
+            "title": "Seis jugadores de Belgrano visitaron una escuela de fútbol en Villa ...",
+            "url": "https:\/\/elmilenio.info\/2021\/12\/03\/seis-jugadores-de-belgrano-visitaron-una-escuela-de-futbol-en-villa-allende\/",
+            "snippet": "En el día de ayer, jugadores y jugadoras de Belgrano realizaron una acción social en la escuela de fútbol “Atlético Celeste” de Villa Allende.",
+            "position": 6,
+            "source": "google_organic",
+            "source_list": [
+                "google_organic"
+            ],
+            "contact_richness": 0,
+            "company_name": "Escuela de fútbol Atlético Celeste",
+            "score": 85,
+            "analysis": "Identifica una escuela específica (Atlético Celeste) en Villa Allende, potencial cliente ideal.",
+            "contact_name": null,
+            "email": null,
+            "phone": null
+        }
+    ]
+}
